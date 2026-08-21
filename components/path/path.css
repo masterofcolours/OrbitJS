@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:host{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+}
+
+.path{
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+}

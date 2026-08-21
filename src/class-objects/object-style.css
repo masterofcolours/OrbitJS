@@ -1,0 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.mass{
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: absolute !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+p{
+    font-family: monospace;
+    font-weight: bold;
+    user-select: none;
+    font-size: 20px;
+    
+}
+
+.orbit{
+    position: absolute;
+    border: 4px dashed white;
+    display: none;
+    border-radius: 50%;
+    box-sizing: border-box;
+    pointer-events: none;
+    transform-origin: center center;
+}

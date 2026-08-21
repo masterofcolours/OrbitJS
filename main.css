@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+
+body{
+        background-color: black;
+        overflow: hidden;
+}
+
+.start-button{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    font-family: system-ui;
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.boom{
+    color: rgb(255, 176, 28);
+    animation-name: boom;
+    animation-duration: 0.3s;
+    position: absolute;
+    font-weight: bold;
+    text-shadow: 0 0 10px orange;
+    
+}
+
+@keyframes boom {
+    from{transform: scale(1);}
+    to{transform: scale(2);}
+}
+
+.flout-btns{
+    position: absolute;
+    background-color: white;
+    padding: 20px 5px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+}
+
+.left-center{
+    right: -45px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.side-panel{
+    position: absolute;
+    width: 0px;
+    height: 100vh;
+    border-right: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    overflow: hidden;
+}
+
+
+.log-panel-header{
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.logo{
+    position: absolute;
+    height: 25px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.controls-btns-box{
+    position: absolute;
+    bottom: 20px;
+    right: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.controls-btns{
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.time{
+    width: 150px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 20px;
+    bottom: 80px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
