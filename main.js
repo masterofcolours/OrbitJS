@@ -8,11 +8,13 @@ import { setOrbitalSpeed } from "./src/world/math/orbital-speed.js";
 import { movement } from "./src/world/god-hands/movement.js";
 import { Log } from "./components/log/log.js";
 import { LogItem } from "./components/log-item/log-item.js";
+import { TimeLine } from "./components/time-line/time-line.js";
 
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
 window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);
+window.customElements.define("time-line", TimeLine);
 
 let startBTN = document.querySelector('.start-button');
 let playBTN = document.querySelector('.play');
@@ -28,9 +30,9 @@ function durationFunction(){
             duration.sec += 1
 
             if(duration.sec === 60){
-                        duration.sec = 0;
-                        duration.min += 1;
-                    }
+                duration.sec = 0;
+                duration.min += 1;
+            }
             
             timeBox.textContent = `00:${duration.min > 9 ?duration.min : "0"+ duration.min}:${duration.sec > 9 ? duration.sec : "0"+duration.sec}`
         }
