@@ -15,16 +15,16 @@ body{
 
 .start-button{
     position: absolute;
-    right: 20px;
-    bottom: 20px;
+    right: 10px;
+    bottom: 10px;
     background-color: white;
     color: black;
     cursor: pointer;
-    width: 150px;
-    height: 50px;
+    width: 80px;
+    height: 40px;
     font-family: system-ui;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,12 +32,12 @@ body{
 }
 
 .boom{
-    color: rgb(255, 176, 28);
+    color: rgb(255, 255, 255);
     animation-name: boom;
     animation-duration: 0.3s;
     position: absolute;
     font-weight: bold;
-    text-shadow: 0 0 10px orange;
+    text-shadow: 0 0 10px rgb(255, 255, 255);
     
 }
 
@@ -89,8 +89,8 @@ body{
 
 .controls-btns-box{
     position: absolute;
-    bottom: 20px;
-    right: 200px;
+    bottom: 10px;
+    right: 95px;
     display: flex;
     align-items: center;
 }
@@ -102,7 +102,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px;
+    margin: 0 5px;
     cursor: pointer;
 }
 
@@ -112,9 +112,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    right: 20px;
-    bottom: 80px;
+    right: -23px;
+    bottom: 60px;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }

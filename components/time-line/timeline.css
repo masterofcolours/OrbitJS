@@ -6,13 +6,13 @@
 
 .timelinebox{
     position: absolute;
-    right: 45px;
+    right: 5px;
     top: 30px;
     width: 100px;
-    height: 570px;
+    height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: absolute;
 }

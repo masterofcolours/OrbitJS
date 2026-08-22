@@ -32,7 +32,7 @@ class TimeLine extends HTMLElement {
 
     }
 
-    update_UI(){
+    update() {
         
     }
 

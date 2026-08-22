@@ -6,13 +6,11 @@ import { acceleration } from "./acceleration.js";
 function distance (first , second ){
 
     let iscollision =  false;
-
+    
     let result = Math.sqrt((second.X - first.X)**2 + (second.Y - first.Y)**2);
-
+    
     let extrAacceleration = [0, 0];
     
-
-
     if(result <= 40){
         
         if(first.mass >= second.mass){

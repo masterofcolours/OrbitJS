@@ -60,7 +60,7 @@ class Particle extends HTMLElement {
         
     }
 
-    update(newData, dt) {
+    update(newData, dt) {        
 
         this.V_X += this.A_X * dt * 0.5;
         this.V_Y += this.A_Y * dt * 0.5;
@@ -88,44 +88,48 @@ class Particle extends HTMLElement {
         }
         
 
-        this.style.transform = `translate(${this.X - 20 }px, ${this.Y - 20}px)`;        
+        this.style.transform = `translate(${this.X - 20 }px, ${this.Y - 20}px)`;
 
-        for( let item of all_objects ){
-            if(item.mass > this.mass){
-                
-                const result = orbit(this, item);
+        this.updateOrbit()
+    }
 
-                const orbitSpeed = setOrbitalSpeed(item, this);
-                
-                if(!result){
-                    break;
+
+    updateOrbit(){
+            for( let item of all_objects ){
+                if(item.mass > this.mass){
+                    
+                    const result = orbit(this, item);
+
+                    const orbitSpeed = setOrbitalSpeed(item, this);
+                    
+                    if(!result){
+                        break;
+                    }
+
+                    this.orbit.style.display = "block";
+
+                    
+                    this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
+                    this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
+
+                    const offsetX = -result.c * Math.cos(result.rotation);
+                    const offsetY = -result.c * Math.sin(result.rotation);
+
+                    const centerX = item.X + offsetX;
+                    const centerY = item.Y + offsetY;
+
+                    const relativeCenterX = centerX - this.X;
+                    const relativeCenterY = centerY - this.Y;
+                    
+                    this.orbit.style.transform = `
+                        translate(${relativeCenterX - result.a * SCALE + 20}px, 
+                                ${relativeCenterY - result.b * SCALE + 20}px)
+                        rotate(${result.rotation}rad)
+                    `;
+
                 }
 
-                this.orbit.style.display = "block";
-
-                
-                this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
-                this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
-
-                const offsetX = -result.c * Math.cos(result.rotation);
-                const offsetY = -result.c * Math.sin(result.rotation);
-
-                const centerX = item.X + offsetX;
-                const centerY = item.Y + offsetY;
-
-                const relativeCenterX = centerX - this.X;
-                const relativeCenterY = centerY - this.Y;
-                
-                 this.orbit.style.transform = `
-                    translate(${relativeCenterX - result.a * SCALE + 20}px, 
-                            ${relativeCenterY - result.b * SCALE + 20}px)
-                    rotate(${result.rotation}rad)
-                `;
-
-            }
-
         }
-        
     }
 
     disconnectedCallback() { 
