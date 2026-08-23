@@ -118,3 +118,38 @@ body{
     font-size: 16px;
     font-weight: bold;
 }
+
+
+.mobile-hide{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    color: white;
+    z-index: 100;
+    overflow: hidden;
+
+    
+}
+
+.mobile-hide img{
+    margin-left: 160px;
+    margin-bottom: 20px;
+    height: 90px;
+}
+
+.mobile-hide p{
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobile-hide {
+    display: flex;
+  }
+}
