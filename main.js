@@ -10,12 +10,14 @@ import { LogItem } from "./components/log-item/log-item.js";
 import { TimeLine } from "./components/time-line/time-line.js";
 import { backward } from "./functions/backward-timeline.js";
 import { forwardTimeLine } from "./functions/forward-timeline.js";
+import { contextmenu } from "./components/context-menu-component/contextmenu-component.js";
 
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
 window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);
 window.customElements.define("time-line", TimeLine);
+window.customElements.define("context-menu", contextmenu);
 
 let startBTN = document.querySelector('.start-button');
 let playBTN = document.querySelector('.play');
@@ -69,9 +71,7 @@ pauseBTN.addEventListener("click", ()=>{
 function initial_setup(){
     
     const object1 = new Particle( { mass: 900000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
-    
     const object2 = new Particle( { mass: 1, x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
-    // const object4 = new Particle( { mass: 1, x: window.innerWidth / 2 - 250, y: window.innerHeight / 2 - 250, } )
     const object3 = new Particle( { mass: 1, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
 
     
@@ -79,7 +79,6 @@ function initial_setup(){
 
     for(let obj of all_objects){
         if(obj !== object1){
-
             let res = setOrbitalSpeed(object1, obj)
             obj.V_X = res[0];
             obj.V_Y = res[1];
