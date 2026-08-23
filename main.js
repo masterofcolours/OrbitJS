@@ -71,8 +71,8 @@ pauseBTN.addEventListener("click", ()=>{
 function initial_setup(){
     
     const object1 = new Particle( { mass: 900000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
-    const object2 = new Particle( { mass: 1, x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
-    const object3 = new Particle( { mass: 1, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
+    const object2 = new Particle( { mass: 5000, x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
+    const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
 
     
     document.body.append(object1, object2, object3)

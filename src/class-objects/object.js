@@ -52,9 +52,9 @@ class Particle extends HTMLElement {
                 `
             }
             
-            connectedCallback() {
+    connectedCallback() {
 
-                all_objects.push(this);
+        all_objects.push(this);
         let index = this.shadowRoot.querySelector('p');
         index.textContent = all_objects.length;
         this.style.position = "absolute";
@@ -106,41 +106,66 @@ class Particle extends HTMLElement {
 
     
     updateOrbit(){
-        for( let item of all_objects ){
-            if(item.mass > this.mass){
-                
-                    const result = orbit(this, item);
-                    
-                    const orbitSpeed = setOrbitalSpeed(item, this);
-                    
-                    if(!result){
-                        break;
-                    }
 
-                    this.orbit.style.display = "block";
-                    
-                    
-                    this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
-                    this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
+        let sun = all_objects.reduce((beforMass, nextMass)=>{
 
-                    const offsetX = -result.c * Math.cos(result.rotation);
-                    const offsetY = -result.c * Math.sin(result.rotation);
+            if(beforMass.mass){
 
-                    const centerX = item.X + offsetX;
-                    const centerY = item.Y + offsetY;
-
-                    const relativeCenterX = centerX - this.X;
-                    const relativeCenterY = centerY - this.Y;
-                    
-                    this.orbit.style.transform = `
-                        translate(${relativeCenterX - result.a * SCALE + 20}px, 
-                                ${relativeCenterY - result.b * SCALE + 20}px)
-                        rotate(${result.rotation}rad)
-                    `;
-
+                if(beforMass.mass > nextMass.mass){
+                    return beforMass;
+                }else{
+                    return nextMass;
                 }
 
+            }else{
+
+                if(beforMass > nextMass.mass){
+                    return beforMass;
+                }else{
+                    return nextMass;
+                }
+            }
+
+        }, 1)
+            
+                
+    const result = orbit(this, sun);
+                        
+        if(result){
+            this.orbit.style.display = "block";
+            
+            
+            this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
+            this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
+
+            const offsetX = -result.c * Math.cos(result.rotation);
+            const offsetY = -result.c * Math.sin(result.rotation);
+
+            const centerX = sun.X + offsetX;
+            const centerY = sun.Y + offsetY;
+
+            const relativeCenterX = centerX - this.X;
+            const relativeCenterY = centerY - this.Y;
+            
+            this.orbit.style.transform = 
+            `
+                translate(${relativeCenterX - result.a * SCALE + 20}px, 
+                        ${relativeCenterY - result.b * SCALE + 20}px)
+                rotate(${result.rotation}rad)
+            `;
+
+
+            if( Number(this.orbit.style.height.replace("px", "")) < 80){
+                this.orbit.style.borderColor = "red"
+            }else{
+                
+                this.orbit.style.borderColor = "white"
+            }
+            
         }
+
+
+        
     }
 
     disconnectedCallback() { 
