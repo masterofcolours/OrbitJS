@@ -30,8 +30,8 @@ class contextmenu extends HTMLElement {
         let x = null;
         let y = null;
 
-        const addNewParticleElem = this.shadowRoot.querySelector(".add")
-        const removeNewParticleElem = this.shadowRoot.querySelector(".remove")
+        const addNewParticleElem = this.shadowRoot.querySelector(".add");
+        const removeNewParticleElem = this.shadowRoot.querySelector(".remove");
 
         document.addEventListener("contextmenu", (event)=>{
             event.preventDefault()
@@ -53,6 +53,21 @@ class contextmenu extends HTMLElement {
         addNewParticleElem.addEventListener("click", ()=>{
             const newParticle = new Particle({ mass: 1, x: x-20, y: y-20, })
             document.body.append(newParticle)
+            
+        })
+
+        removeNewParticleElem.addEventListener("click", ()=>{
+
+            let arr = [...all_objects]
+            
+            arr.forEach((objext)=>{
+                if(objext){
+                    objext.logItem.remove()
+                    objext.remove()
+
+                }
+            })
+
             
         })
 

@@ -88,7 +88,8 @@ class Particle extends HTMLElement {
         this.Kinetic_E = kinetic(this, this.V_X, this.V_Y);
         this.U = potential_energy(this);
         
-        this.logItem.update_UI(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, this.notInOrbit)
+        
+        this.logItem.update_UI(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, this.U, this.Kinetic_E, this.notInOrbit)
         
         this.A_X = 0;
         this.A_Y = 0;
@@ -127,6 +128,8 @@ class Particle extends HTMLElement {
             }
 
         }, 1)
+
+        sun.orbit.style.display = "none";
             
                 
     const result = orbit(this, sun);

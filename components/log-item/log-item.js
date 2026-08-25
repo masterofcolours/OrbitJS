@@ -4,7 +4,7 @@ import { world } from "../../src/world/world.js";
 import { all_objects } from "../../utils/global-variables.js";
 
 class LogItem extends HTMLElement {
-    constructor(mass, x, y, ax, ay, vx, vy, particle){
+    constructor(mass, x, y, ax, ay, vx, vy, u, k,particle){
         super()
         this.hide = true;
         this.mass = mass;
@@ -14,6 +14,8 @@ class LogItem extends HTMLElement {
         this.ay = ay;
         this.vx = vx;
         this.vy = vy;
+        this.k = k;
+        this.u = u;
         this.particle = particle;
         this.attachShadow({mode: "open"})
 
@@ -40,12 +42,14 @@ class LogItem extends HTMLElement {
 
                             <div class="top">
                                 <span class="mass-number" > m= ${this.mass}</span>
-                                <span class="xpos" > x= ${this.x}</span>
-                                <span class="ypos" > y= ${this.y}</span>
+                                <span class="xpos"> x= ${this.x}</span>
+                                <span class="ypos"> y= ${this.y}</span>
                                 <span class="acceleration-x"> vx= ${this.vx}</span>
                                 <span class="acceleration-y"> vy= ${this.vy}</span>
                                 <span class="speed-x" > ax= ${this.ax}</span>
                                 <span class="speed-y" > ay= ${this.ay}</span>
+                                <span class="k" > ay= ${this.k}</span>
+                                <span class="u" > ay= ${this.u}</span>
                             </div>
 
                         </div>
@@ -65,6 +69,8 @@ class LogItem extends HTMLElement {
         this.massAy = this.shadowRoot.querySelector(".acceleration-y");
         this.massVx = this.shadowRoot.querySelector(".speed-x");
         this.massVy = this.shadowRoot.querySelector(".speed-y");
+        this.massK = this.shadowRoot.querySelector(".k");
+        this.massU = this.shadowRoot.querySelector(".u");
         this.orbitData = this.shadowRoot.querySelector(".orbit-data");
 
 
@@ -77,12 +83,12 @@ class LogItem extends HTMLElement {
     }
 
     disconnectedCallback() { 
-        
-        
-        this.particle.remove();
+        if(this.particle){
+            this.particle.remove();
+        }
     }
 
-    update_UI(mass, x, y, vx, vy, ax, ay, notInOrbit){
+    update_UI(mass, x, y, vx, vy, ax, ay, U, k, notInOrbit){
 
         this.massSpan.textContent = "m= " + mass + " kg";
         this.massX.textContent = "x= " + Math.floor(x);
@@ -91,6 +97,8 @@ class LogItem extends HTMLElement {
         this.massAy.textContent = "Ay= " + Math.floor(ay) + "  m/s^2";
         this.massVx.textContent = "Vx= " + Math.floor(vx) + "  m/s";
         this.massVy.textContent = "Vy= " + Math.floor(vy) + "  m/s";
+        this.massK.textContent = "Kinetic Energy= " + Math.floor(k)
+        this.massU.textContent = "Potential Energy= " + Math.floor(U)
         if(!notInOrbit){
            this.orbitData.textContent = "Orbit: true";
         }else{
