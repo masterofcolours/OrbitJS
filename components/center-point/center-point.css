@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    margin: 0;
+}
+
+:host{
+    position: absolute;
+}
+
+.center-point{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.center-point div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.vertical{
+    width: 10px;
+    height: 2px;
+    background-color: white;
+}
+
+.horezintal{
+    height: 10px;
+    width: 2px;
+    background-color: white;
+}
+
+.name{
+    position: absolute;
+    top: 52%;
+    left: 52%;
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 12px;
+}

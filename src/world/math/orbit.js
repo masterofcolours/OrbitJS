@@ -14,7 +14,8 @@ function orbit (planet, central){
 
     const invA = (2 / r) - (v2 / μ);
     if (invA <= 0) { 
-        planet.orbit.style.display ="none"; 
+        planet.orbit.style.display ="none";
+        planet.centerOrbitPoint.style.display ="none";
         planet.notInOrbit = true;
         return null;
     };

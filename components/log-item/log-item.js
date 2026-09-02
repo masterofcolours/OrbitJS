@@ -77,11 +77,11 @@ class LogItem extends HTMLElement {
         const closeBtn = this.shadowRoot.querySelector(".close");
 
         closeBtn.addEventListener("click", ()=>{
-            this.remove()
+            this.remove();
         })
-
+        
     }
-
+    
     disconnectedCallback() { 
         if(this.particle){
             this.particle.remove();

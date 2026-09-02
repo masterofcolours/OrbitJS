@@ -1,7 +1,7 @@
 import { Particle } from "./src/class-objects/object.js";
 import { Path } from "./components/path/path.js";
 import { world } from "./src/world/world.js";
-import { duration, G, play, timeLine } from "./utils/global-variables.js";
+import { duration, play, timeLine } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
 import { setOrbitalSpeed } from "./src/world/math/orbital-speed.js";
 import { movement } from "./src/world/god-hands/movement.js";
@@ -11,6 +11,7 @@ import { TimeLine } from "./components/time-line/time-line.js";
 import { backward } from "./functions/backward-timeline.js";
 import { forwardTimeLine } from "./functions/forward-timeline.js";
 import { contextmenu } from "./components/context-menu-component/contextmenu-component.js";
+import { CenterPoint } from "./components/center-point/center-point.js";
 
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
@@ -18,10 +19,12 @@ window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);
 window.customElements.define("time-line", TimeLine);
 window.customElements.define("context-menu", contextmenu);
+window.customElements.define("center-point", CenterPoint);
 
 let startBTN = document.querySelector('.start-button');
 let playBTN = document.querySelector('.play');
 let pauseBTN = document.querySelector('.pause');
+let removeBTN = document.querySelector('.remove');
 
 backward()
 forwardTimeLine()
@@ -67,15 +70,29 @@ pauseBTN.addEventListener("click", ()=>{
     pauseBTN.style.opacity= 1;
 })
 
+removeBTN.addEventListener("click", ()=>{
+    let arr = [...all_objects]
+            
+    arr.forEach((objext)=>{
+        if(objext){
+            objext.logItem.remove()
+            objext.remove()
+        }
+    })
+    
+})
+
+
+
 
 function initial_setup(){
     
     const object1 = new Particle( { mass: 900000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
     const object2 = new Particle( { mass: 5000, x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
-    const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
+    // const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
 
     
-    document.body.append(object1, object2, object3)
+    document.body.append(object1, object2)
 
     for(let obj of all_objects){
         if(obj !== object1){

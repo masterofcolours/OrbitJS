@@ -1,11 +1,11 @@
 "use strict";
-import { all_objects, duration, logBox } from "../../utils/global-variables.js";
+import { all_objects, logBox } from "../../utils/global-variables.js";
 import { kinetic } from "../world/math/kinetic-energy.js";
 import { potential_energy } from "../world/math/potential-energy.js";
 import { Path } from "../../components/path/path.js";
 import { LogItem } from "../../components/log-item/log-item.js";
 import { orbit, SCALE } from "../world/math/orbit.js";
-import { setOrbitalSpeed } from "../world/math/orbital-speed.js";
+import { CenterPoint } from "../../components/center-point/center-point.js";
 // import { current_object, first_X, first_Y, interval, isMousDown, x_offset, y_offset } from "../world/god-hands/movement.js";
 let current_object = {target: null};
 let duration_time = 0
@@ -33,6 +33,7 @@ class Particle extends HTMLElement {
             this.logItem = new LogItem(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, this)
             this.orbit = null;
             this.notInOrbit = false;
+            this.centerOrbitPoint = new CenterPoint();
         }
 
         this.div = null
@@ -48,12 +49,12 @@ class Particle extends HTMLElement {
                 <p></p>
                 </div>
                 <div class="orbit" ></div>
-                
+
                 `
-            }
+    }
             
     connectedCallback() {
-
+        
         all_objects.push(this);
         let index = this.shadowRoot.querySelector('p');
         index.textContent = all_objects.length;
@@ -62,13 +63,19 @@ class Particle extends HTMLElement {
         
         this.div = this.shadowRoot.querySelector("div");
         
-        logBox.logbox.append(this.logItem)
+        logBox.logbox.append(this.logItem);
         
         this.logItem.shadowRoot.querySelector(".mass").textContent = all_objects.length;
+
+        this.logItem.particle = this;
         
-        this.orbit = this.shadowRoot.querySelector(".orbit")
+        this.orbit = this.shadowRoot.querySelector(".orbit");
         
-        setEventForAllObject(this)
+        document.body.append(this.centerOrbitPoint);        
+        this.centerOrbitPoint.name.textContent = "C" + all_objects.length;
+
+        setEventForAllObject(this);
+
     }
 
     update(newData, dt) {        
@@ -99,7 +106,6 @@ class Particle extends HTMLElement {
             document.body.append(pathitem);
         }
         
-        
         this.style.transform = `translate(${this.X - 20 }px, ${this.Y - 20}px)`;
         
         this.updateOrbit()
@@ -108,35 +114,23 @@ class Particle extends HTMLElement {
     
     updateOrbit(){
 
-        let sun = all_objects.reduce((beforMass, nextMass)=>{
-
-            if(beforMass.mass){
-
-                if(beforMass.mass > nextMass.mass){
-                    return beforMass;
-                }else{
-                    return nextMass;
-                }
-
-            }else{
-
-                if(beforMass > nextMass.mass){
-                    return beforMass;
-                }else{
-                    return nextMass;
-                }
-            }
-
-        }, 1)
+        let sun = all_objects.reduce((maxObj, currentObj) => {
+                return (currentObj.mass > maxObj.mass) ? currentObj : maxObj;
+        });
 
         sun.orbit.style.display = "none";
+        sun.centerOrbitPoint.style.display = "none";
             
                 
     const result = orbit(this, sun);
+
+    let cx = null
+    let cy = null
                         
         if(result){
+
             this.orbit.style.display = "block";
-            
+            this.centerOrbitPoint.style.display = "block";
             
             this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
             this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
@@ -147,6 +141,9 @@ class Particle extends HTMLElement {
             const centerX = sun.X + offsetX;
             const centerY = sun.Y + offsetY;
 
+            cx = centerX - 10
+            cy = centerY - 10
+
             const relativeCenterX = centerX - this.X;
             const relativeCenterY = centerY - this.Y;
             
@@ -155,27 +152,33 @@ class Particle extends HTMLElement {
                 translate(${relativeCenterX - result.a * SCALE + 20}px, 
                         ${relativeCenterY - result.b * SCALE + 20}px)
                 rotate(${result.rotation}rad)
-            `;
-
-
-            if( Number(this.orbit.style.height.replace("px", "")) < 80){
-                this.orbit.style.borderColor = "red"
+            `
+            ;            
+            
+            this.centerOrbitPoint.style.left = cx + "px";
+            this.centerOrbitPoint.style.top = cy  + "px";            
+            
+            if( (result.a - result.c) < 40 ){
+                this.orbit.style.borderColor = "red";
+                this.shadowRoot.querySelector(".mass").classList.add("warning")
             }else{
-                
-                this.orbit.style.borderColor = "white"
+                this.orbit.style.borderColor = "white";
+                this.shadowRoot.querySelector(".mass").classList.remove("warning")
             }
+
+            return;
             
         }
 
-
+        this.shadowRoot.querySelector(".mass").classList.remove("warning")
         
     }
 
     disconnectedCallback() { 
-
         const index = all_objects.indexOf(this);
         all_objects.splice(index, 1);
-        this.logItem.remove()
+        this.logItem.remove();
+        this.centerOrbitPoint.remove()
     }
     
 }

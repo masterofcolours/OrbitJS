@@ -1,6 +1,4 @@
-import { all_objects, softening } from "../../../utils/global-variables.js";
 import { collision } from "../physics/collision.js";
-import { world } from "../world.js";
 import { acceleration } from "./acceleration.js";
 
 function distance (first , second ){
@@ -9,9 +7,10 @@ function distance (first , second ){
     
     let result = Math.sqrt((second.X - first.X)**2 + (second.Y - first.Y)**2);
     
+    
     let extrAacceleration = [0, 0];
     
-    if(result <= 40){
+    if(result <= 40 && result >=35){
         
         if(first.mass >= second.mass){
             collision(second.X, second.Y)
