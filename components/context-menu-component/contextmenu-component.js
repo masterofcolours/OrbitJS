@@ -1,5 +1,6 @@
 "use strict";
 
+import { removeAllParticles } from "../../functions/remove-particles.js";
 import { Particle } from "../../src/class-objects/object.js";
 import { all_objects } from "../../utils/global-variables.js";
 
@@ -57,18 +58,7 @@ class contextmenu extends HTMLElement {
         })
 
         removeNewParticleElem.addEventListener("click", ()=>{
-
-            let arr = [...all_objects]
-            
-            arr.forEach((objext)=>{
-                if(objext){
-                    objext.logItem.remove()
-                    objext.remove()
-
-                }
-            })
-
-            
+            removeAllParticles()
         })
 
     }

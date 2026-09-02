@@ -6,6 +6,7 @@ import { Path } from "../../components/path/path.js";
 import { LogItem } from "../../components/log-item/log-item.js";
 import { orbit, SCALE } from "../world/math/orbit.js";
 import { CenterPoint } from "../../components/center-point/center-point.js";
+import { dimensions } from "../world/math/dimensions.js";
 // import { current_object, first_X, first_Y, interval, isMousDown, x_offset, y_offset } from "../world/god-hands/movement.js";
 let current_object = {target: null};
 let duration_time = 0
@@ -34,6 +35,9 @@ class Particle extends HTMLElement {
             this.orbit = null;
             this.notInOrbit = false;
             this.centerOrbitPoint = new CenterPoint();
+            this.divMass;
+            this.width;
+            this.height;
         }
 
         this.div = null
@@ -54,6 +58,13 @@ class Particle extends HTMLElement {
     }
             
     connectedCallback() {
+
+        this.divMass = this.shadowRoot.querySelector(".mass");
+
+        const firstDimensions = dimensions(this);
+
+        this.width = firstDimensions.widthValue;
+        this.height = firstDimensions.heightValue;
         
         all_objects.push(this);
         let index = this.shadowRoot.querySelector('p');
@@ -65,7 +76,7 @@ class Particle extends HTMLElement {
         
         logBox.logbox.append(this.logItem);
         
-        this.logItem.shadowRoot.querySelector(".mass").textContent = all_objects.length;
+        this.divMass.textContent = all_objects.length;
 
         this.logItem.particle = this;
         
@@ -75,6 +86,7 @@ class Particle extends HTMLElement {
         this.centerOrbitPoint.name.textContent = "C" + all_objects.length;
 
         setEventForAllObject(this);
+
 
     }
 
@@ -105,10 +117,20 @@ class Particle extends HTMLElement {
             let pathitem = new Path(this.X, this.Y);
             document.body.append(pathitem);
         }
+
+        let dimensionsResult = dimensions(this);
         
-        this.style.transform = `translate(${this.X - 20 }px, ${this.Y - 20}px)`;
+        this.width = dimensionsResult.widthValue;
+        this.height = dimensionsResult.heightValue;
+
+        this.divMass.style.width = dimensionsResult.widthValue + "px";
+        this.divMass.style.height = dimensionsResult.heightValue + "px";
+        
+        this.style.transform = `translate(${this.X - this.width/2 }px, ${this.Y - this.height/2}px)`;
         
         this.updateOrbit()
+
+
     }
 
     
@@ -127,48 +149,43 @@ class Particle extends HTMLElement {
     let cx = null
     let cy = null
                         
-        if(result){
+    if(result){
 
-            this.orbit.style.display = "block";
-            this.centerOrbitPoint.style.display = "block";
-            
-            this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
-            this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
-
-            const offsetX = -result.c * Math.cos(result.rotation);
-            const offsetY = -result.c * Math.sin(result.rotation);
-
-            const centerX = sun.X + offsetX;
-            const centerY = sun.Y + offsetY;
-
-            cx = centerX - 10
-            cy = centerY - 10
-
-            const relativeCenterX = centerX - this.X;
-            const relativeCenterY = centerY - this.Y;
-            
-            this.orbit.style.transform = 
-            `
-                translate(${relativeCenterX - result.a * SCALE + 20}px, 
-                        ${relativeCenterY - result.b * SCALE + 20}px)
-                rotate(${result.rotation}rad)
-            `
-            ;            
-            
-            this.centerOrbitPoint.style.left = cx + "px";
-            this.centerOrbitPoint.style.top = cy  + "px";            
-            
-            if( (result.a - result.c) < 40 ){
-                this.orbit.style.borderColor = "red";
-                this.shadowRoot.querySelector(".mass").classList.add("warning")
-            }else{
-                this.orbit.style.borderColor = "white";
-                this.shadowRoot.querySelector(".mass").classList.remove("warning")
-            }
-
-            return;
-            
+        this.orbit.style.display = "block";
+        this.centerOrbitPoint.style.display = "block";
+        
+        this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
+        this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
+        const offsetX = -result.c * Math.cos(result.rotation);
+        const offsetY = -result.c * Math.sin(result.rotation);
+        const centerX = sun.X + offsetX;
+        const centerY = sun.Y + offsetY;
+        cx = centerX - 10
+        cy = centerY - 10
+        const relativeCenterX = centerX - this.X;
+        const relativeCenterY = centerY - this.Y;
+        
+        this.orbit.style.transform = 
+        `
+            translate(${relativeCenterX - result.a * SCALE + this.width/2}px, 
+                    ${relativeCenterY - result.b * SCALE + this.height/2}px)
+            rotate(${result.rotation}rad)
+        `
+        ;            
+        
+        this.centerOrbitPoint.style.left = cx + "px";
+        this.centerOrbitPoint.style.top = cy  + "px";            
+        
+        if( (result.a - (result.c + sun.width/2)) < this.width/2 ){
+            this.orbit.style.borderColor = "red";
+            this.shadowRoot.querySelector(".mass").classList.add("warning")
+        }else{
+            this.orbit.style.borderColor = "white";
+            this.shadowRoot.querySelector(".mass").classList.remove("warning")
         }
+        return;
+        
+    }
 
         this.shadowRoot.querySelector(".mass").classList.remove("warning")
         

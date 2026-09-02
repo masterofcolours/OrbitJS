@@ -1,16 +1,21 @@
 import { collision } from "../physics/collision.js";
 import { acceleration } from "./acceleration.js";
 
-function distance (first , second ){
+function distance (first , second){
 
-    let iscollision =  false;
+    let iscollision =  false;    
     
-    let result = Math.sqrt((second.X - first.X)**2 + (second.Y - first.Y)**2);
-    
+    let result = Math.sqrt(((second.X) - (first.X))**2 + 
+    ((second.Y ) - (first.Y ))**2);
     
     let extrAacceleration = [0, 0];
+
+    let radiusFirst = first.width/2
+    let radiusSecond = second.width/2
+
+    const minDistance = radiusFirst + radiusSecond
     
-    if(result <= 40 && result >=35){
+    if(result < minDistance){
         
         if(first.mass >= second.mass){
             collision(second.X, second.Y)

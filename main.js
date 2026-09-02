@@ -12,6 +12,7 @@ import { backward } from "./functions/backward-timeline.js";
 import { forwardTimeLine } from "./functions/forward-timeline.js";
 import { contextmenu } from "./components/context-menu-component/contextmenu-component.js";
 import { CenterPoint } from "./components/center-point/center-point.js";
+import { removeAllParticles } from "./functions/remove-particles.js";
 
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
@@ -71,28 +72,18 @@ pauseBTN.addEventListener("click", ()=>{
 })
 
 removeBTN.addEventListener("click", ()=>{
-    let arr = [...all_objects]
-            
-    arr.forEach((objext)=>{
-        if(objext){
-            objext.logItem.remove()
-            objext.remove()
-        }
-    })
+    removeAllParticles()
     
 })
 
-
-
-
 function initial_setup(){
     
-    const object1 = new Particle( { mass: 900000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
-    const object2 = new Particle( { mass: 5000, x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
-    // const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
+    const object1 = new Particle( { mass: 9000000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
+    const object2 = new Particle( { mass: 9000, x: window.innerWidth / 2 - 190, y: window.innerHeight / 2 - 190, } )
+    const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
 
     
-    document.body.append(object1, object2)
+    document.body.append(object1, object2, object3)
 
     for(let obj of all_objects){
         if(obj !== object1){
