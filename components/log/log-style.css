@@ -22,7 +22,7 @@
 }
 
 .side-panel{
-    position: absolute;
+    position: fixed;
     left: 1px;
     width: 0px;
     height: 100vh;

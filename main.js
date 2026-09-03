@@ -1,7 +1,7 @@
 import { Particle } from "./src/class-objects/object.js";
 import { Path } from "./components/path/path.js";
 import { world } from "./src/world/world.js";
-import { duration, play, timeLine } from "./utils/global-variables.js";
+import { duration, isCamerAactive, play, timeLine } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
 import { setOrbitalSpeed } from "./src/world/math/orbital-speed.js";
 import { movement } from "./src/world/god-hands/movement.js";
@@ -22,10 +22,11 @@ window.customElements.define("time-line", TimeLine);
 window.customElements.define("context-menu", contextmenu);
 window.customElements.define("center-point", CenterPoint);
 
-let startBTN = document.querySelector('.start-button');
-let playBTN = document.querySelector('.play');
-let pauseBTN = document.querySelector('.pause');
-let removeBTN = document.querySelector('.remove');
+const startBTN = document.querySelector('.start-button');
+const playBTN = document.querySelector('.play');
+const pauseBTN = document.querySelector('.pause');
+const removeBTN = document.querySelector('.remove');
+const cameraBTN = document.querySelector('.camera-off');
 
 backward()
 forwardTimeLine()
@@ -74,6 +75,11 @@ pauseBTN.addEventListener("click", ()=>{
 removeBTN.addEventListener("click", ()=>{
     removeAllParticles()
     
+})
+
+cameraBTN.addEventListener('click', ()=>{
+    isCamerAactive.object = null;
+    cameraBTN.style.display = "none";
 })
 
 function initial_setup(){

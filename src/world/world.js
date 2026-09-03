@@ -1,10 +1,13 @@
-import { all_objects, play } from "../../utils/global-variables.js";
+import { all_objects, isCamerAactive, play } from "../../utils/global-variables.js";
 import { distance } from "./math/distance.js";
 import { force } from "./math/force.js";
 import { acceleration } from "./math/acceleration.js";
 import { createObjectTimeLine } from "../../functions/time-line-obj.js";
 import { addObjectToTimLine } from "../../functions/time-line-add.js";
-let timeStored = 0
+import { camera } from "./camera/camera.js";
+let timeStored = 0;
+
+
 function world(){
 
     function loop(time) {
@@ -70,11 +73,12 @@ function world(){
             
     
             for(let item of all_objects){
-                
                 item.update(item.totalAccelertion, delta_T)
             }
             
         }
+
+        camera(isCamerAactive.object)
         
         
         requestAnimationFrame(loop);

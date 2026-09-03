@@ -74,10 +74,74 @@ span{
     right: 5px;
     top: 5px;
     cursor: pointer;
-   
+    
+}
+
+.camera{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 3px;
+}
+
+.color-platte{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 75px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 3px;
+    
+}
+.platte-section-inner{
+    position: absolute;
+    width: 150px;
+    background-color: black;
+    padding: 5px;
+    border: 1px solid white;
+    display: none;
+    right: 25px;
+    top: -12px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    color:darkblue;
+}
+
+
+
+.platte-section-inner div{
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+}
+
+.platte-section{
+    position: relative;
+    
+}
+
+.camera:hover{
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .close:hover{
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+.color-platte:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.color-platte:hover .platte-section-inner{
+    display: flex;
+}
