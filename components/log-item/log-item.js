@@ -1,8 +1,8 @@
 "use strict";
-import { isCamerAactive } from "../../utils/global-variables.js";
+import { all_objects, isCamerAactive } from "../../utils/global-variables.js";
 
 class LogItem extends HTMLElement {
-    constructor(mass, x, y, ax, ay, vx, vy, u, k,particle){
+    constructor(mass, x, y, ax, ay, vx, vy, u, k, particle){
         super()
         this.hide = true;
         this.mass = mass;
@@ -85,6 +85,7 @@ class LogItem extends HTMLElement {
     connectedCallback() {
 
         this.massSpan = this.shadowRoot.querySelector(".mass-number");
+        this.massNumber = this.shadowRoot.querySelector(".mass");
         this.massX = this.shadowRoot.querySelector(".xpos");
         this.massY = this.shadowRoot.querySelector(".ypos");
         this.massAx = this.shadowRoot.querySelector(".acceleration-x");
@@ -95,11 +96,9 @@ class LogItem extends HTMLElement {
         this.massU = this.shadowRoot.querySelector(".u");
         this.orbitData = this.shadowRoot.querySelector(".orbit-data");
 
-
         const closeBtn = this.shadowRoot.querySelector(".close");
         const cameraBTN = this.shadowRoot.querySelector(".camera");
         const platteBTN = this.shadowRoot.querySelector(".platte-section-inner");
-
 
         closeBtn.addEventListener("click", ()=>{
             this.remove();
@@ -116,6 +115,12 @@ class LogItem extends HTMLElement {
                 this.particle.divMass.style.backgroundColor = item.dataset.color;
             })
         }
+
+        const index = all_objects.findIndex((item)=>{            
+            return item === this.particle;
+        })
+
+        this.massNumber.textContent = index+1;
         
     }
     

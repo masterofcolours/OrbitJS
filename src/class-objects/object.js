@@ -31,7 +31,7 @@ class Particle extends HTMLElement {
             this.A_X = data.ax || 0;
             this.A_Y = data.ay || 0;
             this.Kinetic_E = kinetic(this, this.V_X, this.V_Y);
-            this.logItem = new LogItem(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, this)
+            this.logItem = new LogItem(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, 0, 0,this)
             this.orbit = null;
             this.notInOrbit = false;
             this.centerOrbitPoint = new CenterPoint();
