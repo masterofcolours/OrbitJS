@@ -27,6 +27,7 @@ const playBTN = document.querySelector('.play');
 const pauseBTN = document.querySelector('.pause');
 const removeBTN = document.querySelector('.remove');
 const cameraBTN = document.querySelector('.camera-off');
+const numberOfParticles = document.querySelector('.number-of-particles');
 
 backward()
 forwardTimeLine()

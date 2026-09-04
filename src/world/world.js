@@ -6,6 +6,7 @@ import { createObjectTimeLine } from "../../functions/time-line-obj.js";
 import { addObjectToTimLine } from "../../functions/time-line-add.js";
 import { camera } from "./camera/camera.js";
 let timeStored = 0;
+const numberOfParticles = document.querySelector('.number-of-particles');
 
 
 function world(){
@@ -79,7 +80,7 @@ function world(){
         }
 
         camera(isCamerAactive.object)
-        
+        numberOfParticles.textContent = "Objects: " + all_objects.length
         
         requestAnimationFrame(loop);
     }
