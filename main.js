@@ -1,7 +1,7 @@
 import { Particle } from "./src/class-objects/object.js";
 import { Path } from "./components/path/path.js";
 import { world } from "./src/world/world.js";
-import { duration, isCamerAactive, play, timeLine } from "./utils/global-variables.js";
+import { duration, isCamerAactive, play, timeLine, timerIsOn } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
 import { setOrbitalSpeed } from "./src/world/math/orbital-speed.js";
 import { movement } from "./src/world/god-hands/movement.js";
@@ -13,6 +13,8 @@ import { forwardTimeLine } from "./functions/forward-timeline.js";
 import { contextmenu } from "./components/context-menu-component/contextmenu-component.js";
 import { CenterPoint } from "./components/center-point/center-point.js";
 import { removeAllParticles } from "./functions/remove-particles.js";
+
+world()
 
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
@@ -57,7 +59,10 @@ startBTN.addEventListener('click', ()=>{
     play.value = true;
     pauseBTN.style.opacity= 0.7;
     initial_setup()
-    durationFunction()
+    if(!timerIsOn.value){
+        durationFunction()
+        timerIsOn.value = true;
+    }
 })
 
 playBTN.addEventListener("click", ()=>{
@@ -101,7 +106,6 @@ function initial_setup(){
     }
 
     movement()
-    world()
 
     document.addEventListener("dblclick", ()=>{
     
