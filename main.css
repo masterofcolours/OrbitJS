@@ -182,6 +182,19 @@ body{
     z-index: 10000;
 }
 
+.alert-list-box{
+    position: fixed;
+    width: 550px;
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    top: 15px;
+    right: 15px;
+    gap: 10px;
+    padding: 5px;
+}
+
 .number-of-particles{
     position: fixed;
     bottom: 60px;

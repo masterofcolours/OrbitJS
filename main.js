@@ -13,6 +13,7 @@ import { forwardTimeLine } from "./functions/forward-timeline.js";
 import { contextmenu } from "./components/context-menu-component/contextmenu-component.js";
 import { CenterPoint } from "./components/center-point/center-point.js";
 import { removeAllParticles } from "./functions/remove-particles.js";
+import { AlertBox } from "./components/alert/alert.js";
 
 world()
 
@@ -23,6 +24,7 @@ window.customElements.define("log-item", LogItem);
 window.customElements.define("time-line", TimeLine);
 window.customElements.define("context-menu", contextmenu);
 window.customElements.define("center-point", CenterPoint);
+window.customElements.define("alert-box", AlertBox);
 
 const startBTN = document.querySelector('.start-button');
 const playBTN = document.querySelector('.play');
@@ -90,10 +92,11 @@ cameraBTN.addEventListener('click', ()=>{
 function initial_setup(){
     
     const object1 = new Particle( { mass: 9000000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
-    const object2 = new Particle( { mass: 9000, x: window.innerWidth / 2 - 190, y: window.innerHeight / 2 - 190, } )
-    const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
+    const object2 = new Particle( { mass: 4000, x: window.innerWidth / 2 - 150, y: window.innerHeight / 2 - 150, } )
+    const object3 = new Particle( { mass: 2000, x : window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
+    const object4 = new Particle( { mass: 4000, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
 
-    document.body.append(object1, object2, object3)
+    document.body.append(object1, object2, object3, object4)
 
     for(let obj of all_objects){
         if(obj !== object1){

@@ -59,10 +59,10 @@ class LogItem extends HTMLElement {
 
                                 <div class="skin-items-box">
                                     <div class="skin-items-inner">
-                                    <div data-skin="sun"></div>
-                                        <div data-skin="earth"></div>
-                                        <div data-skin="mars"></div>
-                                        <div data-skin="venuse"></div>
+                                    <div data-skin="sun" title="Sun"></div>
+                                        <div data-skin="earth" title="Earth"></div>
+                                        <div data-skin="mars" title="Mars"></div>
+                                        <div data-skin="venus" title="Venus"></div>
                                     </div>
                                 </div>
 
@@ -141,7 +141,14 @@ class LogItem extends HTMLElement {
                 if(item.dataset.skin === "sun"){                    
                     this.particle.divMass.style.boxShadow = "0 0 50px yellow";
                 }
+                
+                if(item.dataset.skin === "mars"){                    
+                    this.particle.divMass.style.boxShadow = "0 0 20px blue";
+                }
 
+                if(item.dataset.skin === "venus"){                    
+                    this.particle.divMass.style.boxShadow = "0 0 20px yellow";
+                }
             })
 
             item.style.backgroundImage =`url('./pics/${item.dataset.skin}.png')`;

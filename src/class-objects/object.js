@@ -7,7 +7,7 @@ import { LogItem } from "../../components/log-item/log-item.js";
 import { orbit, SCALE } from "../world/math/orbit.js";
 import { CenterPoint } from "../../components/center-point/center-point.js";
 import { dimensions } from "../world/math/dimensions.js";
-// import { current_object, first_X, first_Y, interval, isMousDown, x_offset, y_offset } from "../world/god-hands/movement.js";
+import { AlertBox } from "../../components/alert/alert.js";
 let current_object = {target: null};
 let duration_time = 0
 let isMousDown = {state: false};
@@ -16,6 +16,8 @@ let y_offset = {val: 0};
 let first_X = {val: 0};
 let first_Y = {val: 0};
 let interval = null;
+
+const alertBox = document.querySelector('.alert-list-box')
 
 class Particle extends HTMLElement {
     constructor(data){
@@ -82,10 +84,16 @@ class Particle extends HTMLElement {
         
         this.orbit = this.shadowRoot.querySelector(".orbit");
         
+        const newAlert = new AlertBox("A new planet has just been added to the universe.", "create")
+        alertBox.append(newAlert)
+
         document.body.append(this.centerOrbitPoint);        
         this.centerOrbitPoint.name.textContent = "C" + all_objects.length;
 
         setEventForAllObject(this);
+
+
+        
 
 
     }
@@ -192,6 +200,9 @@ class Particle extends HTMLElement {
     }
 
     disconnectedCallback() { 
+
+        const newAlert = new AlertBox("A planet was just destroyed.", "hit");
+        alertBox.append(newAlert)
         const index = all_objects.indexOf(this);
         all_objects.splice(index, 1);
         this.logItem.remove();
