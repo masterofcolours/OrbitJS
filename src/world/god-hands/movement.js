@@ -10,11 +10,14 @@ import { current_object,
 
 document.addEventListener("mousemove", (event) => {
     if(isMousDown.state){
-        current_object.target.X = event.clientX ;
-        current_object.target.Y = event.clientY ;
+        
+        current_object.target.X = event.pageX ;
+        current_object.target.Y = event.pageY ;
         current_object.target.V_X = 0;
         current_object.target.V_Y = 0;
-        current_object.target.style.transform = `translate(${ event.clientX - x_offset.val }px, ${ event.clientY - y_offset.val }px)`;
+                
+        current_object.target.style.transform = `translate(${ event.pageX - x_offset.val }px, ${ event.pageY - y_offset.val }px)`;
+        
     }
 })
 

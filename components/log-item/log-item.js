@@ -52,9 +52,22 @@ class LogItem extends HTMLElement {
                                     <div data-color="brown" style="background-color: brown;"></div>
                                 </div>
                             </div>
+                            </div>
 
-                        </div>
+                            <div class="skins">
+                                <svg fill="#fafafa" width="18px" height="18px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon" stroke="#fafafa"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M870 126H663.8c-17.4 0-32.9 11.9-37 29.3C614.3 208.1 567 246 512 246s-102.3-37.9-114.8-90.7a37.93 37.93 0 0 0-37-29.3H154a44 44 0 0 0-44 44v252a44 44 0 0 0 44 44h75v388a44 44 0 0 0 44 44h478a44 44 0 0 0 44-44V466h75a44 44 0 0 0 44-44V170a44 44 0 0 0-44-44zm-28 268H723v432H301V394H182V198h153.3c28.2 71.2 97.5 120 176.7 120s148.5-48.8 176.7-120H842v196z"></path> </g></svg>
 
+                                <div class="skin-items-box">
+                                    <div class="skin-items-inner">
+                                    <div data-skin="sun"></div>
+                                        <div data-skin="earth"></div>
+                                        <div data-skin="mars"></div>
+                                        <div data-skin="venuse"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
                         <div class="object-shape">
                             <div class="orbit-data"  style="color: white; margin-top: -35px;"> Orbit: true </div>
                             <div class="mass">1</div>
@@ -99,6 +112,7 @@ class LogItem extends HTMLElement {
         const closeBtn = this.shadowRoot.querySelector(".close");
         const cameraBTN = this.shadowRoot.querySelector(".camera");
         const platteBTN = this.shadowRoot.querySelector(".platte-section-inner");
+        const skinBTN = this.shadowRoot.querySelector(".skin-items-inner");
 
         closeBtn.addEventListener("click", ()=>{
             this.remove();
@@ -114,6 +128,24 @@ class LogItem extends HTMLElement {
             item.addEventListener("click", ()=>{
                 this.particle.divMass.style.backgroundColor = item.dataset.color;
             })
+        }
+
+        for(let item of [...skinBTN.children]){
+            item.addEventListener('click', ()=>{
+                this.particle.divMass.style.backgroundImage =`url('./pics/${item.dataset.skin}.png')`;
+
+                if(item.dataset.skin === "earth"){                    
+                    this.particle.divMass.style.boxShadow = "0 0 20px blue";
+                }
+                
+                if(item.dataset.skin === "sun"){                    
+                    this.particle.divMass.style.boxShadow = "0 0 50px yellow";
+                }
+
+            })
+
+            item.style.backgroundImage =`url('./pics/${item.dataset.skin}.png')`;
+
         }
 
         const index = all_objects.findIndex((item)=>{            

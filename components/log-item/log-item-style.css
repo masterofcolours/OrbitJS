@@ -108,7 +108,7 @@ span{
     padding: 5px;
     border: 1px solid white;
     display: none;
-    right: 25px;
+    right: 24px;
     top: -12px;
     justify-content: space-between;
     align-items: center;
@@ -116,8 +116,6 @@ span{
     gap: 5px;
     color:darkblue;
 }
-
-
 
 .platte-section-inner div{
     width: 20px;
@@ -143,5 +141,55 @@ span{
 }
 
 .color-platte:hover .platte-section-inner{
+    display: flex;
+}
+
+.skins{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 110px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 3px;
+}
+
+.skin-items-box{
+    position: relative !important;
+}
+
+.skin-items-inner{
+    position: absolute;
+    width: 200px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid white;
+    background-color: black;
+    right: 24px;
+    top: -11px;
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 100;
+}
+
+.skin-items-inner div{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-position: center center;
+    background-size: contain;
+    background-clip: content-box;
+}
+
+.skins:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.skins:hover .skin-items-inner{
     display: flex;
 }

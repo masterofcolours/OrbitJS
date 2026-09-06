@@ -228,8 +228,10 @@ function setEventForAllObject (root){
             first_X.val = current_object.target.X;
             first_Y.val = current_object.target.Y;
             duration_time = Date.now()
-            x_offset.val = Math.floor(event.clientX - rect.left);
-            y_offset.val = Math.floor(event.clientY - rect.top);
+            
+            
+            x_offset.val = Math.floor(event.pageX + (window.scrollX * 1) - rect.left);
+            y_offset.val = Math.floor(event.pageY + (window.scrollY * 1) - rect.top);
             debounce();
         }
 

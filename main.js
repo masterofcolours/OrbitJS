@@ -29,7 +29,6 @@ const playBTN = document.querySelector('.play');
 const pauseBTN = document.querySelector('.pause');
 const removeBTN = document.querySelector('.remove');
 const cameraBTN = document.querySelector('.camera-off');
-const numberOfParticles = document.querySelector('.number-of-particles');
 
 backward()
 forwardTimeLine()
@@ -94,7 +93,6 @@ function initial_setup(){
     const object2 = new Particle( { mass: 9000, x: window.innerWidth / 2 - 190, y: window.innerHeight / 2 - 190, } )
     const object3 = new Particle( { mass: 1000, x : window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
 
-    
     document.body.append(object1, object2, object3)
 
     for(let obj of all_objects){

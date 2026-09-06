@@ -15,7 +15,10 @@
     justify-content: center;
     cursor: pointer;
     z-index: 1000;
-     
+    background-position: center center;
+    background-size: contain;
+    background-clip: content-box;
+    padding: 0;
      
 }
 
