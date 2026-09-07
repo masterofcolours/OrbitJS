@@ -41,8 +41,8 @@
 }
 
 .outer-box{
-    max-height: 100%;
-    min-height: 100%;
+    max-height: 99%;
+    min-height: 99%;
     overflow-y: auto;
 }
 

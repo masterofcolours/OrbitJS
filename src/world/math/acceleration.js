@@ -1,4 +1,3 @@
-
 function acceleration (target, force){
 
     let A_X = force[0] / target.mass * 2
