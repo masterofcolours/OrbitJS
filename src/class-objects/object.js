@@ -1,6 +1,6 @@
 "use strict";
 import { all_objects, logBox } from "../../utils/global-variables.js";
-import { kinetic } from "../world/math/kinetic-energy.js";
+import { kinetic } from "../world/math/jsCods/kinetic.js";
 import { potential_energy } from "../world/math/potential-energy.js";
 import { Path } from "../../components/path/path.js";
 import { LogItem } from "../../components/log-item/log-item.js";

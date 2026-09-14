@@ -12,9 +12,6 @@ function potential_energy(input){
         }
     }
 
-    
-    
-
     return U;
 
 }

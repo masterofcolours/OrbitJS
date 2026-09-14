@@ -1,5 +1,6 @@
 import { collision } from "../physics/collision.js";
-import { acceleration } from "./acceleration.js";
+import { acceleration } from "./jsCods/acceleration.js";
+
 
 function distance (first , second){
 

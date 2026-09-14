@@ -3,7 +3,6 @@ import { Path } from "./components/path/path.js";
 import { world } from "./src/world/world.js";
 import { duration, isCamerAactive, play, timeLine, timerIsOn } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
-import { setOrbitalSpeed } from "./src/world/math/orbital-speed.js";
 import { movement } from "./src/world/god-hands/movement.js";
 import { Log } from "./components/log/log.js";
 import { LogItem } from "./components/log-item/log-item.js";
@@ -14,6 +13,7 @@ import { contextmenu } from "./components/context-menu-component/contextmenu-com
 import { CenterPoint } from "./components/center-point/center-point.js";
 import { removeAllParticles } from "./functions/remove-particles.js";
 import { AlertBox } from "./components/alert/alert.js";
+import { setOrbitalSpeed } from "./src/world/math/jsCods/orbit-speed.js";
 
 world()
 

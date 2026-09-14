@@ -1,10 +1,10 @@
 import { all_objects, isCamerAactive, play } from "../../utils/global-variables.js";
 import { distance } from "./math/distance.js";
-import { force } from "./math/force.js";
-import { acceleration } from "./math/acceleration.js";
 import { createObjectTimeLine } from "../../functions/time-line-obj.js";
 import { addObjectToTimLine } from "../../functions/time-line-add.js";
 import { camera } from "./camera/camera.js";
+import { acceleration } from "./math/jsCods/acceleration.js";
+import { force } from "./math/jsCods/force.js";
 let timeStored = 0;
 const numberOfParticles = document.querySelector('.number-of-particles');
 
