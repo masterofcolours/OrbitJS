@@ -91,10 +91,21 @@ cameraBTN.addEventListener('click', ()=>{
 
 function initial_setup(){
     
-    const object1 = new Particle( { mass: 9000000, x: window.innerWidth / 2, y: window.innerHeight / 2, vx: 0, vy: 0 } )
-    const object2 = new Particle( { mass: 4000, x: window.innerWidth / 2 - 150, y: window.innerHeight / 2 - 150, } )
-    const object3 = new Particle( { mass: 2000, x : window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 100, } )
-    const object4 = new Particle( { mass: 4000, x : window.innerWidth / 2 - 200, y: window.innerHeight / 2 - 200, } )
+    const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
+    const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+    const viewportWidth = document.documentElement.clientWidth / 2;
+    const viewportHeight = document.documentElement.clientHeight / 2;
+    
+    window.scrollTo({
+        top: middleY,
+        left: middleX,
+        behavior: "smooth" 
+    })
+
+    const object1 = new Particle( { mass: 9000000, x: middleX + viewportWidth , y: middleY + viewportHeight, vx: 0, vy: 0 } )
+    const object2 = new Particle( { mass: 4000, x: middleX + viewportWidth - 150, y: middleY + viewportHeight - 150, } )
+    const object3 = new Particle( { mass: 2000, x : middleX + viewportWidth - 100, y: middleY + viewportHeight - 100, } )
+    const object4 = new Particle( { mass: 6000, x : middleX + viewportWidth - 200, y: middleY + viewportHeight - 200, } )
 
     document.body.append(object1, object2, object3, object4)
 
@@ -106,13 +117,12 @@ function initial_setup(){
         }
     }
 
-    movement()
 
-    document.addEventListener("dblclick", ()=>{
-    
-})
+
+    movement()
     
 }
+
 
 
 

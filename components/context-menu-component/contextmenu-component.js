@@ -37,10 +37,10 @@ class contextmenu extends HTMLElement {
         document.addEventListener("contextmenu", (event)=>{
             event.preventDefault()
             this.style.display = "flex";
-            this.style.top = event.clientY + 20 + "px";
-            this.style.left = event.clientX + 20 + "px";
-            x = event.clientX + 20;
-            y = event.clientY + 20;
+            this.style.top = event.pageY + 20 + "px";
+            this.style.left = event.pageX + 20 + "px";
+            x = event.pageX + 20;
+            y = event.pageY + 20;
         
             
         })
