@@ -190,6 +190,49 @@ span{
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+.settings{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 145px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 3px;
+}
+
+.inner-setting-box{
+    position: absolute;
+    width: 250px;
+    display: none;
+    border: 1px solid white;
+    background-color: black;
+    right: 24px;
+    top: 0px;
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 100;
+}
+
+.item-input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.item-input input{
+    background-color: rgb(49, 49, 49);
+    color: white;
+}
+
+.settings:hover .inner-setting-box{
+    display: flex;
+}
+
 .skins:hover .skin-items-inner{
     display: flex;
 }
