@@ -14,6 +14,7 @@ import { CenterPoint } from "./components/center-point/center-point.js";
 import { removeAllParticles } from "./functions/remove-particles.js";
 import { AlertBox } from "./components/alert/alert.js";
 import { setOrbitalSpeed } from "./src/world/math/jsCods/orbit-speed.js";
+import { ArrowKeys } from "./components/arrow-keys/arrow-keys.js";
 
 world()
 
@@ -25,6 +26,7 @@ window.customElements.define("time-line", TimeLine);
 window.customElements.define("context-menu", contextmenu);
 window.customElements.define("center-point", CenterPoint);
 window.customElements.define("alert-box", AlertBox);
+window.customElements.define("arrow-keys", ArrowKeys);
 
 const startBTN = document.querySelector('.start-button');
 const playBTN = document.querySelector('.play');
