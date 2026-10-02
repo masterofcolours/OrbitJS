@@ -15,8 +15,10 @@ import { removeAllParticles } from "./functions/remove-particles.js";
 import { AlertBox } from "./components/alert/alert.js";
 import { setOrbitalSpeed } from "./src/world/math/jsCods/orbit-speed.js";
 import { ArrowKeys } from "./components/arrow-keys/arrow-keys.js";
+import { leftClickOnWorld } from "./src/world/god-hands/movement-in-world.js";
 
-world()
+world();
+leftClickOnWorld();
 
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
