@@ -35,9 +35,9 @@ class Particle extends HTMLElement {
             this.Kinetic_E = kinetic(this, this.V_X, this.V_Y);
             this.logItem = new LogItem(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, 0, 0,this)
             this.orbit = null;
+            this.divMass;
             this.notInOrbit = false;
             this.centerOrbitPoint = new CenterPoint();
-            this.divMass;
             this.width;
             this.height;
         }
@@ -131,10 +131,10 @@ class Particle extends HTMLElement {
         this.width = dimensionsResult.widthValue;
         this.height = dimensionsResult.heightValue;
 
-        this.divMass.style.width = dimensionsResult.widthValue + "px";
-        this.divMass.style.height = dimensionsResult.heightValue + "px";
+        this.divMass.style.width = (dimensionsResult.widthValue) + "px";
+        this.divMass.style.height = (dimensionsResult.heightValue) + "px";
         
-        this.style.transform = `translate(${this.X - this.width/2 }px, ${this.Y - this.height/2}px)`;
+        this.style.transform = `translate(${(this.X - this.width/2) }px, ${ (this.Y - this.height/2) }px)`;
         
         this.updateOrbit()
 

@@ -29,8 +29,8 @@
 body{
     background-color: black;
     overflow: auto;
-    width: 6000px;
-    height: 6000px;
+    width: 10000px;
+    height: 10000px;
 }
 
 .start-button{

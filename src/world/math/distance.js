@@ -14,7 +14,7 @@ function distance (first , second){
     let radiusFirst = first.width/2
     let radiusSecond = second.width/2
 
-    const minDistance = radiusFirst + radiusSecond
+    const minDistance = (radiusFirst + radiusSecond);
     
     if(result < minDistance){
         

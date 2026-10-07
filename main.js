@@ -1,7 +1,7 @@
 import { Particle } from "./src/class-objects/object.js";
 import { Path } from "./components/path/path.js";
 import { world } from "./src/world/world.js";
-import { duration, isCamerAactive, play, timeLine, timerIsOn } from "./utils/global-variables.js";
+import { currentSun, duration, isCamerAactive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
 import { movement } from "./src/world/god-hands/movement.js";
 import { Log } from "./components/log/log.js";
@@ -16,10 +16,13 @@ import { AlertBox } from "./components/alert/alert.js";
 import { setOrbitalSpeed } from "./src/world/math/jsCods/orbit-speed.js";
 import { ArrowKeys } from "./components/arrow-keys/arrow-keys.js";
 import { leftClickOnWorld } from "./src/world/god-hands/movement-in-world.js";
+import { SelectWorld } from "./components/select-world-panel/select-world.js";
+import { WorldItem } from "./components/world-item/world-item.js"; 
+// import { zoom } from "./src/world/god-hands/zoom.js";
 
 world();
 leftClickOnWorld();
-
+movement()
 window.customElements.define("space-object", Particle);
 window.customElements.define("path-object", Path);
 window.customElements.define("log-object", Log);
@@ -29,45 +32,38 @@ window.customElements.define("context-menu", contextmenu);
 window.customElements.define("center-point", CenterPoint);
 window.customElements.define("alert-box", AlertBox);
 window.customElements.define("arrow-keys", ArrowKeys);
+window.customElements.define("select-world", SelectWorld);
+window.customElements.define("world-item", WorldItem);
 
 const startBTN = document.querySelector('.start-button');
 const playBTN = document.querySelector('.play');
 const pauseBTN = document.querySelector('.pause');
 const removeBTN = document.querySelector('.remove');
 const cameraBTN = document.querySelector('.camera-off');
+// const zoomUp = document.querySelector('.zoom-up');
+// const zoomIn = document.querySelector('.zoom-in');
 
 backward()
 forwardTimeLine()
 
-function durationFunction(){
-
-    let timeBox = document.querySelector(".time");
-
-    setInterval(()=>{
-        
-        if(play.value){
-            duration.sec += 1
-
-            if(duration.sec === 60){
-                duration.sec = 0;
-                duration.min += 1;
-            }
-            
-            timeBox.textContent = `00:${duration.min > 9 ?duration.min : "0"+ duration.min}:${duration.sec > 9 ? duration.sec : "0"+duration.sec}`
-        }
-        
-    }, 1000)
-    
-}
 
 startBTN.addEventListener('click', ()=>{
-    play.value = true;
-    pauseBTN.style.opacity= 0.7;
-    initial_setup()
-    if(!timerIsOn.value){
-        durationFunction()
-        timerIsOn.value = true;
+    // play.value = true;
+    // pauseBTN.style.opacity= 0.7;
+    // initial_setup()
+    // if(!timerIsOn.value){
+    //     durationFunction()
+    //     timerIsOn.value = true;
+    // }
+
+    if(!selectPanelIsActive.value){
+        const newPanel = new SelectWorld();
+        document.body.append(newPanel);
+        selectPanelIsActive.value = true;
     }
+
+
+
 })
 
 playBTN.addEventListener("click", ()=>{
@@ -93,37 +89,21 @@ cameraBTN.addEventListener('click', ()=>{
     cameraBTN.style.display = "none";
 })
 
+// zoomUp.addEventListener("click", ()=>{
+//     if(zoomRange.value <= 5){
+//         zoomRange.value -= 0.1;
+//         zoom("zoom-up");
+//     }
+// })
+
+// zoomIn.addEventListener("click", ()=>{
+//     if(zoomRange.value >= 0){
+//         zoomRange.value += 0.1;
+//         zoom("zoom-in");
+//     }
+// })
+
 function initial_setup(){
-    
-    const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
-    const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
-    const viewportWidth = document.documentElement.clientWidth / 2;
-    const viewportHeight = document.documentElement.clientHeight / 2;
-    
-    window.scrollTo({
-        top: middleY,
-        left: middleX,
-        behavior: "smooth" 
-    })
-
-    const object1 = new Particle( { mass: 9000000, x: middleX + viewportWidth , y: middleY + viewportHeight, vx: 0, vy: 0 } )
-    const object2 = new Particle( { mass: 4000, x: middleX + viewportWidth - 150, y: middleY + viewportHeight - 150, } )
-    const object3 = new Particle( { mass: 2000, x : middleX + viewportWidth - 100, y: middleY + viewportHeight - 100, } )
-    const object4 = new Particle( { mass: 6000, x : middleX + viewportWidth - 200, y: middleY + viewportHeight - 200, } )
-
-    document.body.append(object1, object2, object3, object4)
-
-    for(let obj of all_objects){
-        if(obj !== object1){
-            let res = setOrbitalSpeed(object1, obj)
-            obj.V_X = res[0];
-            obj.V_Y = res[1];
-        }
-    }
-
-
-
-    movement()
     
 }
 
