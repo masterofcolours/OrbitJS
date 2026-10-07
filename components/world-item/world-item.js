@@ -1,4 +1,4 @@
-import { currentWorld } from "../../utils/global-variables.js";
+import { currentWorld, selectsBTN } from "../../utils/global-variables.js";
 
 class WorldItem extends HTMLElement {
     constructor(){
@@ -24,10 +24,21 @@ class WorldItem extends HTMLElement {
     connectedCallback(){
 
         const btn = this.shadowRoot.querySelector('button');
-
+        const box = this.shadowRoot.querySelector('.main-box');
+        selectsBTN.push(this);
+        
         btn.addEventListener("click", ()=>{
-            currentWorld.value = this.getAttribute("name");            
+            currentWorld.value = this.getAttribute("name");
+            box.style.backgroundColor = "rgba(0, 128, 0, 0.43)";
+
+            for(const item of selectsBTN){
+                if(item !== this){
+                    const box = item.shadowRoot.querySelector('.main-box');
+                    box.style.backgroundColor = "black";
+                }
+            }
         })
+
 
 
     }

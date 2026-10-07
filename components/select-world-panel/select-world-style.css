@@ -5,10 +5,16 @@
 
 }
 
+:host{
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .main-box{
-    position: absolute;
-    width: 50%;
+    width: 100%;
     padding: 10px;
     border: 1px solid rgba(181, 181, 181, 0.705);
     background-color: black;
@@ -17,9 +23,7 @@
     align-items: stretch;
     justify-content: space-around;
     flex-wrap: wrap;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    
     box-shadow: 0 0 100px rgba(181, 181, 181, 0.747);
 }
 
@@ -30,11 +34,12 @@
     width: 100%;
     padding: 20px 0;
     border-top: 2px solid #575757;
+    margin-top: 10px;
 }
 
 button{
     background-color: white;
-    padding: 10px 40px;
+    padding: 10px 100px;
     font-size: 18px;
     font-weight: bold;
     border-radius: 8px;

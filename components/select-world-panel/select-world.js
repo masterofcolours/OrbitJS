@@ -2,7 +2,7 @@ import { durationFunction } from "../../functions/durationFunction.js";
 import { scrollCenter } from "../../functions/ScrollCenter.js";
 import { setInorbitUI } from "../../functions/setInorbitUI.js";
 import { Particle } from "../../src/class-objects/object.js";
-import { currentSun, currentWorld, play, selectPanelIsActive, timerIsOn } from "../../utils/global-variables.js";
+import { currentSun, currentWorld, play, selectPanelIsActive, selectsBTN, timerIsOn } from "../../utils/global-variables.js";
 
 class SelectWorld extends HTMLElement {
     constructor(){
@@ -33,7 +33,18 @@ class SelectWorld extends HTMLElement {
 
         const btn = this.shadowRoot.querySelector('.start');
         const pauseBTN = document.querySelector('.pause');
+        const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
+        const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+        const viewportWidth = document.documentElement.clientWidth / 2;
+        const viewportHeight = document.documentElement.clientHeight / 2;
+        const centerX = viewportWidth + middleX;
+        const centerY = viewportHeight + middleY;
         
+        this.style.left = centerX + "px";
+        this.style.top = centerY + "px";
+        
+        scrollCenter(middleX, middleY);
+
         btn.addEventListener("click", ()=>{
             if(!play.value){
                 play.value = true;
@@ -43,15 +54,6 @@ class SelectWorld extends HTMLElement {
                     timerIsOn.value = true;
                 }
             }
-
-            const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
-            const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
-            const viewportWidth = document.documentElement.clientWidth / 2;
-            const viewportHeight = document.documentElement.clientHeight / 2;
-
-            const centerX = viewportWidth + middleX;
-            const centerY = viewportHeight + middleY;
-            
 
             if(currentWorld.value){
 
@@ -145,14 +147,11 @@ class SelectWorld extends HTMLElement {
                     );
 
                     currentSun.value = sun;
-
                     setInorbitUI();
-
                     scrollCenter(middleX, middleY);
-
                     selectPanelIsActive.value = false;
                     this.remove();
-
+                    selectsBTN.length = 0;
                 }
                 
                 if(String(currentWorld.value).toLowerCase() === "trappist-1"){
@@ -237,8 +236,7 @@ class SelectWorld extends HTMLElement {
                     scrollCenter(middleX, middleY);
                     selectPanelIsActive.value = false;
                     this.remove();
-
-
+                    selectsBTN.length = 0;
                 }
 
             }else{

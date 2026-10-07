@@ -8,6 +8,8 @@ import { orbit, SCALE } from "../world/math/orbit.js";
 import { CenterPoint } from "../../components/center-point/center-point.js";
 import { dimensions } from "../world/math/dimensions.js";
 import { AlertBox } from "../../components/alert/alert.js";
+import { renderingOptimization } from "../../functions/rendering-optimization.js";
+import { pureDistance } from "../../functions/pure-distance.js";
 let current_object = {target: null};
 let duration_time = 0
 let isMousDown = {state: false};
@@ -92,10 +94,6 @@ class Particle extends HTMLElement {
 
         setEventForAllObject(this);
 
-
-        
-
-
     }
 
     update(newData, dt) {        
@@ -136,8 +134,8 @@ class Particle extends HTMLElement {
         
         this.style.transform = `translate(${(this.X - this.width/2) }px, ${ (this.Y - this.height/2) }px)`;
         
+        
         this.updateOrbit()
-
 
     }
 
@@ -151,51 +149,79 @@ class Particle extends HTMLElement {
         sun.orbit.style.display = "none";
         sun.centerOrbitPoint.style.display = "none";
             
+        const result = orbit(this, sun);
+
+        let cx = null;
+        let cy = null;
+                            
+        if(result){
+
+            this.orbit.style.display = "block";
+            this.centerOrbitPoint.style.display = "block";
+            
+            this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
+            this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
+            const offsetX = -result.c * Math.cos(result.rotation);
+            const offsetY = -result.c * Math.sin(result.rotation);
+            const centerX = sun.X + offsetX;
+            const centerY = sun.Y + offsetY;
+            cx = centerX - 10;
+            cy = centerY - 10;
+            const relativeCenterX = centerX - this.X;
+            const relativeCenterY = centerY - this.Y;
+            
+            this.orbit.style.transform = 
+            `
+                translate(${relativeCenterX - result.a * SCALE + this.width/2}px, 
+                        ${relativeCenterY - result.b * SCALE + this.height/2}px)
+                rotate(${result.rotation}rad)
+            `
+            ;            
+            
+            this.centerOrbitPoint.style.left = cx + "px";
+            this.centerOrbitPoint.style.top = cy  + "px";            
+            
+            if( (result.a - (result.c + sun.width/2)) < this.width/2 ){
+                this.orbit.style.borderColor = "red";
+                this.shadowRoot.querySelector(".mass").classList.add("warning")
+            }else{
+                this.orbit.style.borderColor = "white";
+                this.shadowRoot.querySelector(".mass").classList.remove("warning")
+            }
+
+            const redultRendering =  renderingOptimization(this, result, cx, cy);
                 
-    const result = orbit(this, sun);
+            if(redultRendering.divHide){
+                this.divMass.style.display = "none";
+                
+            }else{
+                this.divMass.style.display = "flex";
+            }
 
-    let cx = null
-    let cy = null
-                        
-    if(result){
+            const centerXclinet = window.scrollX + window.innerWidth /2
+            const centerYclinet = window.scrollY + window.innerHeight /2
+            
+            const resultClinet = pureDistance(this.X, this.Y, centerXclinet, centerYclinet)
+            
+            if(redultRendering.orbitHide){
+                if(resultClinet > 500){
+                    this.orbit.style.display = "none";
+                }else{
+                    this.orbit.style.display = "block";
+                }
+                
+            }else{
+                this.orbit.style.display = "block";
+            }
 
-        this.orbit.style.display = "block";
-        this.centerOrbitPoint.style.display = "block";
-        
-        this.orbit.style.width  = `${result.a * 2 * SCALE}px`;
-        this.orbit.style.height = `${result.b * 2 * SCALE}px`;   
-        const offsetX = -result.c * Math.cos(result.rotation);
-        const offsetY = -result.c * Math.sin(result.rotation);
-        const centerX = sun.X + offsetX;
-        const centerY = sun.Y + offsetY;
-        cx = centerX - 10
-        cy = centerY - 10
-        const relativeCenterX = centerX - this.X;
-        const relativeCenterY = centerY - this.Y;
-        
-        this.orbit.style.transform = 
-        `
-            translate(${relativeCenterX - result.a * SCALE + this.width/2}px, 
-                    ${relativeCenterY - result.b * SCALE + this.height/2}px)
-            rotate(${result.rotation}rad)
-        `
-        ;            
-        
-        this.centerOrbitPoint.style.left = cx + "px";
-        this.centerOrbitPoint.style.top = cy  + "px";            
-        
-        if( (result.a - (result.c + sun.width/2)) < this.width/2 ){
-            this.orbit.style.borderColor = "red";
-            this.shadowRoot.querySelector(".mass").classList.add("warning")
-        }else{
-            this.orbit.style.borderColor = "white";
-            this.shadowRoot.querySelector(".mass").classList.remove("warning")
+            return;
+            
         }
-        return;
-        
-    }
 
-        this.shadowRoot.querySelector(".mass").classList.remove("warning")
+        this.shadowRoot.querySelector(".mass").classList.remove("warning");
+
+
+        
         
     }
 
