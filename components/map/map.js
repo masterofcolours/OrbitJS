@@ -1,5 +1,6 @@
 "use strict";
 
+import { scrollCenter } from "../../functions/ScrollCenter.js";
 import { all_objects } from "../../utils/global-variables.js";
 
 const mapObjectArray = []
@@ -17,7 +18,12 @@ class MapItem extends HTMLElement {
                 <div class="window">
                     <div class="inner-window">
 
-                        <div class="current-pos" ></div>
+                        <div class="current-pos">
+                            <div class="inner-pos">
+                                <div class="hori"></div>
+                                <div class="vertical"></div>
+                            </div>
+                        </div>
                     
                     </div>
                 </div>
@@ -37,6 +43,20 @@ class MapItem extends HTMLElement {
 
         this.cp.style.width = this.cpWidth + "px";
         this.cp.style.height = this.cpHeight + "px";
+
+        this.innerWindow.addEventListener("click", (event)=>{
+            event.stopPropagation();
+            if(event.target === this.innerWindow){
+                this.cp.style.left = (event.layerX - this.cpWidth/2) + "px";
+                this.cp.style.top = (event.layerY - this.cpHeight/2) + "px";
+    
+                const X = ((event.layerX) / 250) * totaalX;
+    
+                const y = ((event.layerY) / 160) * totaalY;
+    
+                scrollCenter(X, y)
+            }
+        })
 
         this.updateMap()
     }

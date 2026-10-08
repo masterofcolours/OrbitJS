@@ -4,11 +4,13 @@
     box-sizing: border-box;
     font-family: system-ui;
     user-select: none;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 1px;
+  height: 1px;
 }
 
 ::-webkit-scrollbar-track {
@@ -20,10 +22,7 @@
   border-radius: 2px;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ffffff transparent;
-}
+
 
 
 body{

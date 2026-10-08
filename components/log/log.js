@@ -60,12 +60,6 @@ class Log extends HTMLElement {
         
     }
 
-    update() {
-
-        
-
-    }
-
     disconnectedCallback() { 
 
         
