@@ -204,7 +204,7 @@ class Particle extends HTMLElement {
             const resultClinet = pureDistance(this.X, this.Y, centerXclinet, centerYclinet)
             
             
-            if(resultClinet > window.innerWidth/2){
+            if(resultClinet > window.innerWidth /2){
                 this.orbit.style.display = "none";
             }
                 
@@ -217,9 +217,6 @@ class Particle extends HTMLElement {
         }
 
         this.shadowRoot.querySelector(".mass").classList.remove("warning");
-
-
-        
         
     }
 

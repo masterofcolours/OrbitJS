@@ -26,7 +26,7 @@ class SelectWorld extends HTMLElement {
                 
                 </world-item>
 
-                <world-item src-link="3-body.jpg" name="3 Body">
+                <world-item src-link="3-body.jpg" name="Triple Planet System">
                 
                 </world-item>
 
@@ -271,7 +271,7 @@ class SelectWorld extends HTMLElement {
                 }
 
 
-                if(String(currentWorld.value).toLowerCase() === "3 body"){
+                if(String(currentWorld.value).toLowerCase() === "triple planet system"){
                     const starA = new Particle({
                         mass: 6000000,
                         x: centerX - 200,
