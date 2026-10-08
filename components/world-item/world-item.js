@@ -1,4 +1,6 @@
+import { alertBox } from "../../src/class-objects/object.js";
 import { currentWorld, selectsBTN } from "../../utils/global-variables.js";
+import { AlertBox } from "../alert/alert.js";
 
 class WorldItem extends HTMLElement {
     constructor(){
@@ -9,8 +11,8 @@ class WorldItem extends HTMLElement {
             <link rel="stylesheet" href="./components/world-item/world-item-style.css"> 
             <div class="main-box">
 
-                <div class="pic-box">
-                    <img draggable="false" src="./pics/${this.getAttribute("src-link")}">
+                <div class="pic-box" style="background-image: Url('./pics/${this.getAttribute("src-link")}')">
+                    
                 </div>
                 <p>${this.getAttribute("name")}</p>
 
@@ -37,6 +39,9 @@ class WorldItem extends HTMLElement {
                     box.style.backgroundColor = "black";
                 }
             }
+            
+            const newAlert = new AlertBox("The planetary system is selected", "green");
+            alertBox.append(newAlert);
         })
 
 

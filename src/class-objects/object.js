@@ -19,7 +19,7 @@ let first_X = {val: 0};
 let first_Y = {val: 0};
 let interval = null;
 
-const alertBox = document.querySelector('.alert-list-box')
+const alertBox = document.querySelector('.alert-list-box');
 
 class Particle extends HTMLElement {
     constructor(data){
@@ -204,7 +204,7 @@ class Particle extends HTMLElement {
             const resultClinet = pureDistance(this.X, this.Y, centerXclinet, centerYclinet)
             
             
-            if(resultClinet > 800){
+            if(resultClinet > window.innerWidth/2){
                 this.orbit.style.display = "none";
             }
                 
@@ -285,4 +285,5 @@ export { Particle,
     first_X,
     first_Y,
     interval,
+    alertBox,
  };

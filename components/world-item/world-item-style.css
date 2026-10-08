@@ -26,20 +26,18 @@
 
 .pic-box{
     width: 100%;
-    height: 250px;
+    height: 150px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 1rem !important;
     border: 2px solid #575757;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-img{
-    width: 100%;
-    height: 100%;
-    
-}
 
 p{
     padding-top: 20px ;

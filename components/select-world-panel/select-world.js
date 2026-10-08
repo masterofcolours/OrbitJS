@@ -1,8 +1,9 @@
 import { durationFunction } from "../../functions/durationFunction.js";
 import { scrollCenter } from "../../functions/ScrollCenter.js";
 import { setInorbitUI } from "../../functions/setInorbitUI.js";
-import { Particle } from "../../src/class-objects/object.js";
+import { alertBox, Particle } from "../../src/class-objects/object.js";
 import { currentSun, currentWorld, play, selectPanelIsActive, selectsBTN, timerIsOn } from "../../utils/global-variables.js";
+import { AlertBox } from "../alert/alert.js";
 
 class SelectWorld extends HTMLElement {
     constructor(){
@@ -21,12 +22,32 @@ class SelectWorld extends HTMLElement {
                 
                 </world-item>
 
+                <world-item src-link="kapler90.avif" name="Kapler-90">
+                
+                </world-item>
+
+                <world-item src-link="3-body.jpg" name="3 Body">
+                
+                </world-item>
+
                 <div class="button-box">
                     <button class="start">Start</botton>
                 </div>
             </div>
 
         `
+    }
+
+    configFunction(sun){
+        const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
+        const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+        currentSun.value = sun;
+        setInorbitUI();
+        scrollCenter(middleX, middleY);
+        selectPanelIsActive.value = false;
+        this.remove();
+        selectsBTN.length = 0;
+        
     }
 
     connectedCallback(){
@@ -63,8 +84,6 @@ class SelectWorld extends HTMLElement {
                         mass: 9000000,
                         x: centerX,
                         y: centerY,
-                        vx: 0,
-                        vy: 0
                     });
 
                     
@@ -72,32 +91,28 @@ class SelectWorld extends HTMLElement {
                         mass: 1.5,
                         x: centerX + 160,
                         y: centerY,
-                        vx: 0,
-                        vy: 12.45
+                        
                     });
 
                     const venus = new Particle({
                         mass: 22,
                         x: centerX + 230,
                         y: centerY,
-                        vx: 0,
-                        vy: 9.11
+                        
                     });
 
                     const earth = new Particle({
                         mass: 27,
                         x: centerX + 370,
                         y: centerY,
-                        vx: 0,
-                        vy: 7.75
+                        
                     });
 
                     const mars = new Particle({
                         mass: 3,
                         x: centerX + 629,
                         y: centerY,
-                        vx: 0,
-                        vy: 6.28
+                        
                     });
 
                     
@@ -105,32 +120,28 @@ class SelectWorld extends HTMLElement {
                         mass: 8590,
                         x: centerX + 880,
                         y: centerY,
-                        vx: 0,
-                        vy: 3.40
+                        
                     });
 
                     const saturn = new Particle({
                         mass: 2570,
                         x: centerX + 1431,
                         y: centerY,
-                        vx: 0,
-                        vy: 2.51
+                        
                     });
 
                     const uranus = new Particle({
                         mass: 392,
                         x: centerX + 2879,
                         y: centerY,
-                        vx: 0,
-                        vy: 1.77
+                        
                     });
 
                     const neptune = new Particle({
                         mass: 462,
                         x: centerX + 4510,
                         y: centerY,
-                        vx: 0,
-                        vy: 1.41
+                        
                     });
 
                     document.body.append(
@@ -146,12 +157,7 @@ class SelectWorld extends HTMLElement {
 
                     );
 
-                    currentSun.value = sun;
-                    setInorbitUI();
-                    scrollCenter(middleX, middleY);
-                    selectPanelIsActive.value = false;
-                    this.remove();
-                    selectsBTN.length = 0;
+                    this.configFunction(sun);
                 }
                 
                 if(String(currentWorld.value).toLowerCase() === "trappist-1"){
@@ -169,7 +175,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 783,
                         y: centerY,
                         vx: 0,
-                        vy: 1.02
+                        vy: 0
                     });
 
                     const planetC = new Particle({
@@ -177,7 +183,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 1072,
                         y: centerY,
                         vx: 0,
-                        vy: 0.87
+                        vy: 0
                     });
 
                     const planetD = new Particle({
@@ -185,7 +191,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 1511,
                         y: centerY,
                         vx: 0,
-                        vy: 0.73
+                        vy: 0
                     });
 
                     const planetE = new Particle({
@@ -193,7 +199,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 1985,
                         y: centerY,
                         vx: 0,
-                        vy: 0.64
+                        vy: 0
                     });
 
                     const planetF = new Particle({
@@ -201,7 +207,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 2612,
                         y: centerY,
                         vx: 0,
-                        vy: 0.56
+                        vy: 0
                     });
 
                     const planetG = new Particle({
@@ -209,7 +215,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 3178,
                         y: centerY,
                         vx: 0,
-                        vy: 0.50
+                        vy: 0
                     });
 
                     const planetH = new Particle({
@@ -217,7 +223,7 @@ class SelectWorld extends HTMLElement {
                         x: centerX + 4200,
                         y: centerY,
                         vx: 0,
-                        vy: 0.44
+                        vy: 0
                     });
 
                     document.body.append(
@@ -231,16 +237,69 @@ class SelectWorld extends HTMLElement {
                         planetH,
                     );
 
-                    currentSun.value = trappist1;
-                    setInorbitUI();
-                    scrollCenter(middleX, middleY);
-                    selectPanelIsActive.value = false;
-                    this.remove();
-                    selectsBTN.length = 0;
+                    this.configFunction(trappist1);
+                    
                 }
 
+
+                if(String(currentWorld.value).toLowerCase() === "kapler-90"){
+
+                    const kepler90Star = new Particle({ mass: 10000000, x: centerX, y: centerY, vx: 0, vy: 0 });
+                    const kepler90b = new Particle({ mass: 200,   x: centerX + 500,  y: centerY,       vx: 0,     vy: 0 });
+                    const kepler90c = new Particle({ mass: 250,   x: centerX,        y: centerY - 750,  vx: 0,  vy: 0    });
+                    const kepler90i = new Particle({ mass: 220,   x: centerX - 1000, y: centerY,       vx: 0,     vy: 0 });
+                    const kepler90d = new Particle({ mass: 1500,  x: centerX,        y: centerY + 1500, vx: 0, vy: 0    });
+                    const kepler90e = new Particle({ mass: 1800,  x: centerX + 2100, y: centerY,       vx: 0,     vy: 0 });
+                    const kepler90f = new Particle({ mass: 2000,  x: centerX - 2800, y: centerY,       vx: 0,     vy: 0 });
+                    const kepler90g = new Particle({ mass: 12000, x: centerX,        y: centerY - 3600, vx: 0,  vy: 0    });
+                    const kepler90h = new Particle({ mass: 15000, x: centerX + 4400, y: centerY,       vx: 0,     vy: 0 });
+
+                    
+                    document.body.append(
+                        kepler90Star,
+                        kepler90b,
+                        kepler90c,
+                        kepler90i,
+                        kepler90d,
+                        kepler90e,
+                        kepler90f,
+                        kepler90g,
+                        kepler90h
+                    );
+
+                    this.configFunction(kepler90Star);
+                }
+
+
+                if(String(currentWorld.value).toLowerCase() === "3 body"){
+                    const starA = new Particle({
+                        mass: 6000000,
+                        x: centerX - 200,
+                        y: centerY,
+                    });
+
+                    const starB = new Particle({
+                        mass: 1000000,
+                        x: centerX + 300,
+                        y: centerY,
+                    });
+
+                    const planet = new Particle({
+                        mass: 1000,
+                        x: centerX + 3500,
+                        y: centerY,
+                    });
+
+                    document.body.append(starA, starB, planet);
+
+                    this.configFunction(starA);
+
+                }
+
+
             }else{
-                
+                const newAlert = new AlertBox("You have not selected any planetary system yet!", "alert");
+                alertBox.append(newAlert);
             }
         })
 
