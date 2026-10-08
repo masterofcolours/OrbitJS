@@ -5,11 +5,14 @@ import { addObjectToTimLine } from "../../functions/time-line-add.js";
 import { camera } from "./camera/camera.js";
 import { acceleration } from "./math/jsCods/acceleration.js";
 import { force } from "./math/jsCods/force.js";
+import { createMap } from "../../functions/create-pam.js";
 let timeStored = 0;
 const numberOfParticles = document.querySelector('.number-of-particles');
 
 
 function world(){
+
+    const upfateMap = createMap();
 
     function loop(time) {
 
@@ -20,7 +23,7 @@ function world(){
                 timeStored = time;
             }
 
-            
+            upfateMap.updateMap()
             
             if (delta_T > 0.1) delta_T = 0.016;
             

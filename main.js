@@ -13,13 +13,12 @@ import { contextmenu } from "./components/context-menu-component/contextmenu-com
 import { CenterPoint } from "./components/center-point/center-point.js";
 import { removeAllParticles } from "./functions/remove-particles.js";
 import { AlertBox } from "./components/alert/alert.js";
-import { setOrbitalSpeed } from "./src/world/math/jsCods/orbit-speed.js";
 import { ArrowKeys } from "./components/arrow-keys/arrow-keys.js";
 import { leftClickOnWorld } from "./src/world/god-hands/movement-in-world.js";
 import { SelectWorld } from "./components/select-world-panel/select-world.js";
 import { WorldItem } from "./components/world-item/world-item.js"; 
 // import { zoom } from "./src/world/god-hands/zoom.js";
-
+import { MapItem } from "./components/map/map.js";
 world();
 leftClickOnWorld();
 movement()
@@ -102,10 +101,6 @@ cameraBTN.addEventListener('click', ()=>{
 //         zoom("zoom-in");
 //     }
 // })
-
-function initial_setup(){
-    
-}
 
 
 

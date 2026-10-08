@@ -10,6 +10,7 @@ import { dimensions } from "../world/math/dimensions.js";
 import { AlertBox } from "../../components/alert/alert.js";
 import { renderingOptimization } from "../../functions/rendering-optimization.js";
 import { pureDistance } from "../../functions/pure-distance.js";
+import { mapObjectArray } from "../../components/map/map.js";
 let current_object = {target: null};
 let duration_time = 0
 let isMousDown = {state: false};
@@ -227,7 +228,13 @@ class Particle extends HTMLElement {
         const index = all_objects.indexOf(this);
         all_objects.splice(index, 1);
         this.logItem.remove();
-        this.centerOrbitPoint.remove()
+        this.centerOrbitPoint.remove();
+
+        mapObjectArray.forEach((item)=>{
+            if(item.real === this){
+                item.real = null;
+            }
+        })
     }
     
 }
