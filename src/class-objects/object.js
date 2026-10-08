@@ -203,14 +203,12 @@ class Particle extends HTMLElement {
             
             const resultClinet = pureDistance(this.X, this.Y, centerXclinet, centerYclinet)
             
-            if(redultRendering.orbitHide){
-                if(resultClinet > 500){
-                    this.orbit.style.display = "none";
-                }else{
-                    this.orbit.style.display = "block";
-                }
+            
+            if(resultClinet > 800){
+                this.orbit.style.display = "none";
+            }
                 
-            }else{
+            else{
                 this.orbit.style.display = "block";
             }
 

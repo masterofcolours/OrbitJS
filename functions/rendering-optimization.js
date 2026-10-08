@@ -24,25 +24,25 @@ function renderingOptimization(particle, data, cx, cy){
         particleHide = true;
     }
 
-    for(let theta = 0; theta <= 359; theta++){
+    // for(let theta = 0; theta <= 359; theta++){
         
-            const x = cx + (data.a * Math.cos(theta) * Math.cos(data.rotation)) - (data.b * Math.sin(theta) * Math.sin(data.rotation));
-            const y = cy + (data.a * Math.cos(theta) * Math.sin(data.rotation)) + (data.b * Math.sin(theta) * Math.cos(data.rotation));
+    //         const x = cx + (data.a * Math.cos(theta) * Math.cos(data.rotation)) - (data.b * Math.sin(theta) * Math.sin(data.rotation));
+    //         const y = cy + (data.a * Math.cos(theta) * Math.sin(data.rotation)) + (data.b * Math.sin(theta) * Math.cos(data.rotation));
     
-            if((x >= left && x <= right) && (y >= top && y <= bottom)){
+    //         if((x >= left && x <= right) && (y >= top && y <= bottom)){
                 
-            }else{
-                numberPoints++;
-            }
+    //         }else{
+    //             numberPoints++;
+    //         }
         
 
-    }
+    // }
 
-    if(numberPoints >= 180){
-        orbitHide1 = true;
-    }
+    // if(numberPoints >= 180){
+    //     orbitHide1 = true;
+    // }
 
-    return {divHide: particleHide, orbitHide: orbitHide1}
+    return {divHide: particleHide}
 }
 
 export { renderingOptimization }
