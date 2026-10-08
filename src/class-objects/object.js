@@ -201,10 +201,10 @@ class Particle extends HTMLElement {
             const centerXclinet = window.scrollX + window.innerWidth /2
             const centerYclinet = window.scrollY + window.innerHeight /2
             
-            const resultClinet = pureDistance(this.X, this.Y, centerXclinet, centerYclinet)
+            const resultClinet = pureDistance(this.X + this.width/2, this.Y + this.width/2, centerXclinet, centerYclinet)
             
             
-            if(resultClinet > window.innerWidth /2){
+            if(resultClinet > (window.innerWidth /2 + screen.height/2)/1.5){
                 this.orbit.style.display = "none";
             }
                 

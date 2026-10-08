@@ -16,10 +16,10 @@ function renderingOptimization(particle, data, cx, cy){
 
 
     if(
-        particle.X + particle.width < left ||
-        particle.X > right ||
-        particle.Y + particle.height  < top ||
-        particle.Y > bottom
+        particle.X + particle.width/2 < left ||
+        particle.X + particle.width/2 > right ||
+        particle.Y + particle.width/2 < top ||
+        particle.Y + particle.width/2 > bottom
     ){
         particleHide = true;
     }
