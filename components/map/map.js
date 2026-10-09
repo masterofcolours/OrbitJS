@@ -1,7 +1,7 @@
 "use strict";
 
 import { scrollCenter } from "../../functions/ScrollCenter.js";
-import { all_objects, currentSun } from "../../utils/global-variables.js";
+import { all_objects, currentSun, isCamerAactive } from "../../utils/global-variables.js";
 
 const mapObjectArray = []
 
@@ -67,6 +67,16 @@ class MapItem extends HTMLElement {
         const newDiv = document.createElement("div");
         newDiv.setAttribute("class", "object");
         this.innerWindow.append(newDiv);
+        newDiv.addEventListener("click", ()=>{
+            const result = mapObjectArray.find((item)=>{
+                return item.inMap === newDiv;
+            })
+
+            isCamerAactive.object = result.real;
+            const cameraBTN = document.querySelector('.camera-off');
+            cameraBTN.style.display = "block";
+
+        })
         return newDiv;
     }
 
