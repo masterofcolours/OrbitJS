@@ -2,7 +2,6 @@
 import { all_objects, logBox } from "../../utils/global-variables.js";
 import { kinetic } from "../world/math/jsCods/kinetic.js";
 import { potential_energy } from "../world/math/potential-energy.js";
-import { Path } from "../../components/path/path.js";
 import { LogItem } from "../../components/log-item/log-item.js";
 import { orbit, SCALE } from "../world/math/orbit.js";
 import { CenterPoint } from "../../components/center-point/center-point.js";
@@ -114,15 +113,15 @@ class Particle extends HTMLElement {
         this.Kinetic_E = kinetic(this, this.V_X, this.V_Y);
         this.U = potential_energy(this);
         
-        
         this.logItem.update_UI(this.mass, this.X, this.Y, this.V_X, this.V_Y, this.A_X, this.A_Y, this.U, this.Kinetic_E, this.notInOrbit)
         
         this.A_X = 0;
         this.A_Y = 0;
 
         if(this.notInOrbit){
-            let pathitem = new Path(this.X, this.Y);
-            document.body.append(pathitem);
+            this.shadowRoot.querySelector(".mass").classList.add("blue-warning");
+        }else{
+            this.shadowRoot.querySelector(".mass").classList.remove("blue-warning");
         }
 
         let dimensionsResult = dimensions(this);
@@ -135,8 +134,7 @@ class Particle extends HTMLElement {
         
         this.style.transform = `translate(${(this.X - this.width/2) }px, ${ (this.Y - this.height/2) }px)`;
         
-        
-        this.updateOrbit()
+        this.updateOrbit();
 
     }
 
@@ -184,10 +182,10 @@ class Particle extends HTMLElement {
             
             if( (result.a - (result.c + sun.width/2)) < this.width/2 ){
                 this.orbit.style.borderColor = "red";
-                this.shadowRoot.querySelector(".mass").classList.add("warning")
+                this.shadowRoot.querySelector(".mass").classList.add("warning");
             }else{
                 this.orbit.style.borderColor = "white";
-                this.shadowRoot.querySelector(".mass").classList.remove("warning")
+                this.shadowRoot.querySelector(".mass").classList.remove("warning");
             }
 
             const redultRendering =  renderingOptimization(this, result, cx, cy);

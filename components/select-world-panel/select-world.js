@@ -30,6 +30,14 @@ class SelectWorld extends HTMLElement {
                 
                 </world-item>
 
+                <world-item src-link="kapler11.jpeg" name="Kapler-11">
+                
+                </world-item>
+
+                <world-item src-link="cancri55.jpeg" name="Cancri 55">
+                
+                </world-item>
+
                 <div class="button-box">
                     <button class="start">Start</botton>
                 </div>
@@ -294,6 +302,112 @@ class SelectWorld extends HTMLElement {
                     document.body.append(starA, starB, planet);
 
                     this.configFunction(starA, "Triple Planet System");
+                }
+
+
+                if(String(currentWorld.value).toLowerCase() === "kapler-11"){
+
+                    const kepler11 = new Particle({
+                        mass: 8550000,
+                        x: centerX,
+                        y: centerY,
+                    });
+
+                    const k11b = new Particle({
+                        mass: 75,
+                        x: centerX + 820,
+                        y: centerY,
+                    });
+
+                    const k11c = new Particle({
+                        mass: 135,
+                        x: centerX + 964,
+                        y: centerY,
+                        
+                    });
+
+                    const k11d = new Particle({
+                        mass: 220,
+                        x: centerX + 1397,
+                        y: centerY,
+                        
+                    });
+
+                    const k11e = new Particle({
+                        mass: 256,
+                        x: centerX + 1758,
+                        y: centerY,
+                        
+                    });
+
+                    const k11f = new Particle({
+                        mass: 66,
+                        x: centerX + 2253,
+                        y: centerY,
+                        
+                    });
+
+                    const k11g = new Particle({
+                        mass: 405,
+                        x: centerX + 4200,
+                        y: centerY,
+                        
+                    });
+
+                    document.body.append(kepler11, k11b, k11c, k11d, k11e, k11f, k11g);
+
+                    this.configFunction(kepler11, "Kapler 11");
+                }
+
+
+                if(String(currentWorld.value).toLowerCase() === "cancri 55"){
+
+                    const cancri55 = new Particle({
+                        mass: 8145000,
+                        x: centerX,
+                        y: centerY,
+                        
+                    });
+
+                    const c55e = new Particle({
+                        mass: 216,
+                        x: centerX + 143,
+                        y: centerY,
+                        
+                    });
+
+                    const c55b = new Particle({
+                        mass: 6858,
+                        x: centerX + 252,
+                        y: centerY,
+                        
+                    });
+
+                    const c55c = new Particle({
+                        mass: 1364,
+                        x: centerX + 352,
+                        y: centerY,
+                        
+                    });
+
+                    const c55f = new Particle({
+                        mass: 1269,
+                        x: centerX + 612,
+                        y: centerY,
+                        
+                    });
+
+                    const c55d = new Particle({
+                        mass: 32616,
+                        x: centerX + 4500,
+                        y: centerY,
+                        
+                    });
+
+                    document.body.append(cancri55, c55e, c55b, c55c, c55f, c55d);
+
+                    this.configFunction(cancri55, "Cancri 55");
+                    
                 }
 
 

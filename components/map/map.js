@@ -1,7 +1,7 @@
 "use strict";
 
 import { scrollCenter } from "../../functions/ScrollCenter.js";
-import { all_objects } from "../../utils/global-variables.js";
+import { all_objects, currentSun } from "../../utils/global-variables.js";
 
 const mapObjectArray = []
 
@@ -89,7 +89,12 @@ class MapItem extends HTMLElement {
             if(!isThere){
                 const newDiv = this.createDIV()
                 mapObjectArray.push({real: item, inMap: newDiv})
+
+                if(item === currentSun.value){
+                    newDiv.setAttribute("class", "object sun");
+                }
             }
+
 
         }
 

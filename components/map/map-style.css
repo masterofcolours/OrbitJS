@@ -75,3 +75,19 @@
     top: 8px;
     left: 20px;
 }
+
+.sun{
+    background-color: yellow;
+    box-shadow: 0 0 16px yellow;
+    width: 10px;
+    height: 10px;
+    transform: translate(-5px, -5px);
+    animation-name: sunanimate;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes sunanimate {
+    from{outline: 0px solid yellow;}
+    to{outline: 2px solid yellow;}
+}

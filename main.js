@@ -1,5 +1,4 @@
 import { Particle } from "./src/class-objects/object.js";
-import { Path } from "./components/path/path.js";
 import { world } from "./src/world/world.js";
 import { currentSun, duration, isCamerAactive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
@@ -24,7 +23,6 @@ world();
 leftClickOnWorld();
 movement()
 window.customElements.define("space-object", Particle);
-window.customElements.define("path-object", Path);
 window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);
 window.customElements.define("time-line", TimeLine);
