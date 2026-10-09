@@ -19,6 +19,7 @@ import { SelectWorld } from "./components/select-world-panel/select-world.js";
 import { WorldItem } from "./components/world-item/world-item.js"; 
 // import { zoom } from "./src/world/god-hands/zoom.js";
 import { MapItem } from "./components/map/map.js";
+import { scrollCenter } from "./functions/ScrollCenter.js";
 world();
 leftClickOnWorld();
 movement()
@@ -47,21 +48,17 @@ forwardTimeLine()
 
 
 startBTN.addEventListener('click', ()=>{
-    // play.value = true;
-    // pauseBTN.style.opacity= 0.7;
-    // initial_setup()
-    // if(!timerIsOn.value){
-    //     durationFunction()
-    //     timerIsOn.value = true;
-    // }
-
     if(!selectPanelIsActive.value){
+        document.querySelector(".current-world").textContent = "Empty";
+        removeAllParticles()
         const newPanel = new SelectWorld();
         document.body.append(newPanel);
         selectPanelIsActive.value = true;
+    }else{
+        const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
+        const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+        scrollCenter(middleX, middleY);
     }
-
-
 
 })
 

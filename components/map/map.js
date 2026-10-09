@@ -24,10 +24,12 @@ class MapItem extends HTMLElement {
                                 <div class="vertical"></div>
                             </div>
                         </div>
-                    
-                    </div>
-                </div>
 
+                        
+                        </div>
+                        </div>
+                        
+                        <div class="map-text">Map</div>
             `
     }
 
@@ -54,7 +56,7 @@ class MapItem extends HTMLElement {
     
                 const y = ((event.layerY) / 160) * totaalY;
     
-                scrollCenter(X, y)
+                scrollCenter(X, y);
             }
         })
 
@@ -98,7 +100,7 @@ class MapItem extends HTMLElement {
 
             }else{
                 item.inMap.remove();
-                mapObjectArray.splice(index, 1)
+                mapObjectArray.splice(index, 1);
             }
 
         })

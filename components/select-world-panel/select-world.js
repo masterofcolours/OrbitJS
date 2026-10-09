@@ -38,9 +38,10 @@ class SelectWorld extends HTMLElement {
         `
     }
 
-    configFunction(sun){
+    configFunction(sun, name){
         const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
         const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+        document.querySelector(".current-world").textContent = name;
         currentSun.value = sun;
         setInorbitUI();
         scrollCenter(middleX, middleY);
@@ -157,7 +158,7 @@ class SelectWorld extends HTMLElement {
 
                     );
 
-                    this.configFunction(sun);
+                    this.configFunction(sun, "Solar System");
                 }
                 
                 if(String(currentWorld.value).toLowerCase() === "trappist-1"){
@@ -237,7 +238,7 @@ class SelectWorld extends HTMLElement {
                         planetH,
                     );
 
-                    this.configFunction(trappist1);
+                    this.configFunction(trappist1, "Trappist-1");
                     
                 }
 
@@ -267,7 +268,7 @@ class SelectWorld extends HTMLElement {
                         kepler90h
                     );
 
-                    this.configFunction(kepler90Star);
+                    this.configFunction(kepler90Star, "Kapler-90");
                 }
 
 
@@ -292,8 +293,7 @@ class SelectWorld extends HTMLElement {
 
                     document.body.append(starA, starB, planet);
 
-                    this.configFunction(starA);
-
+                    this.configFunction(starA, "Triple Planet System");
                 }
 
 

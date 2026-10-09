@@ -199,8 +199,8 @@ class Particle extends HTMLElement {
                 this.divMass.style.display = "flex";
             }
 
-            const centerXclinet = window.scrollX + window.innerWidth /2
-            const centerYclinet = window.scrollY + window.innerHeight /2
+            const centerXclinet = window.scrollX + window.innerWidth /2;
+            const centerYclinet = window.scrollY + window.innerHeight /2;
             
             const resultClinet = pureDistance(this.X + this.width/2, this.Y + this.width/2, centerXclinet, centerYclinet)
             
