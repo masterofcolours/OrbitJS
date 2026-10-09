@@ -136,6 +136,22 @@ class Particle extends HTMLElement {
         
         this.updateOrbit();
 
+        if(this.X + this.width >= 10000){
+            this.remove();
+        }
+
+        if(this.X < 0){
+            this.remove();
+        }
+
+        if(this.Y < 0){
+            this.remove();
+        }
+
+        if(this.Y + this.width >= 10000){
+            this.remove();
+        }
+
     }
 
     

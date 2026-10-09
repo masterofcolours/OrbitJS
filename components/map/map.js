@@ -48,15 +48,17 @@ class MapItem extends HTMLElement {
 
         this.innerWindow.addEventListener("click", (event)=>{
             event.stopPropagation();
-            if(event.target === this.innerWindow){
-                this.cp.style.left = (event.layerX - this.cpWidth/2) + "px";
-                this.cp.style.top = (event.layerY - this.cpHeight/2) + "px";
-    
-                const X = ((event.layerX) / 250) * totaalX;
-    
-                const y = ((event.layerY) / 160) * totaalY;
-    
-                scrollCenter(X, y);
+            if(!isCamerAactive.object){
+                if(event.target === this.innerWindow){
+                    this.cp.style.left = (event.layerX - this.cpWidth/2) + "px";
+                    this.cp.style.top = (event.layerY - this.cpHeight/2) + "px";
+        
+                    const X = ((event.layerX) / 250) * totaalX;
+        
+                    const y = ((event.layerY) / 160) * totaalY;
+        
+                    scrollCenter(X, y);
+                }
             }
         })
 
