@@ -55,7 +55,7 @@ function world(){
                             toRemove.add(obj_inner);
                         }else{
                             
-                            let f = force(obj, obj_iiner, dist[0]);
+                            let f = force(obj, obj_inner, dist[0]);
                             a = acceleration(obj, f);
                             
                         }
