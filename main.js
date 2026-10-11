@@ -1,6 +1,6 @@
 import { Particle } from "./src/class-objects/object.js";
 import { world } from "./src/world/world.js";
-import { currentSun, duration, isCamerAactive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
+import { about, currentSun, duration, isCamerAactive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
 import { movement } from "./src/world/god-hands/movement.js";
 import { Log } from "./components/log/log.js";
@@ -16,9 +16,8 @@ import { ArrowKeys } from "./components/arrow-keys/arrow-keys.js";
 import { leftClickOnWorld } from "./src/world/god-hands/movement-in-world.js";
 import { SelectWorld } from "./components/select-world-panel/select-world.js";
 import { WorldItem } from "./components/world-item/world-item.js"; 
-// import { zoom } from "./src/world/god-hands/zoom.js";
-import { MapItem } from "./components/map/map.js";
 import { scrollCenter } from "./functions/ScrollCenter.js";
+import { AboutME } from "./components/about-me/about-me.js";
 world();
 leftClickOnWorld();
 movement()
@@ -32,14 +31,15 @@ window.customElements.define("alert-box", AlertBox);
 window.customElements.define("arrow-keys", ArrowKeys);
 window.customElements.define("select-world", SelectWorld);
 window.customElements.define("world-item", WorldItem);
+window.customElements.define("about-me", AboutME);
 
 const startBTN = document.querySelector('.start-button');
 const playBTN = document.querySelector('.play');
 const pauseBTN = document.querySelector('.pause');
 const removeBTN = document.querySelector('.remove');
 const cameraBTN = document.querySelector('.camera-off');
-// const zoomUp = document.querySelector('.zoom-up');
-// const zoomIn = document.querySelector('.zoom-in');
+const gitBTN = document.querySelector('.git');
+
 
 backward()
 forwardTimeLine()
@@ -82,6 +82,16 @@ cameraBTN.addEventListener('click', ()=>{
     isCamerAactive.object = null;
     cameraBTN.style.display = "none";
 })
+
+gitBTN.addEventListener('click', ()=>{
+    if(!about.aboutIsOn){
+        const newAboutCart = new AboutME();
+        document.body.append(newAboutCart);
+        about.aboutIsOn = true;
+    }
+
+})
+
 
 // zoomUp.addEventListener("click", ()=>{
 //     if(zoomRange.value <= 5){

@@ -12,5 +12,6 @@ const zoomRange = {value: 1};
 const currentWorld = {value: null};
 const currentSun = {value: null};
 const selectPanelIsActive = {value: false}
-const selectsBTN = []
-export { all_objects, G, selectsBTN, softening, logBox, play , duration, timeLine, CDC, isCamerAactive, timerIsOn, zoomRange, currentWorld, currentSun, selectPanelIsActive};
+const selectsBTN = [];
+const about = {aboutIsOn: false}
+export { all_objects, about, G, selectsBTN, softening, logBox, play , duration, timeLine, CDC, isCamerAactive, timerIsOn, zoomRange, currentWorld, currentSun, selectPanelIsActive};
