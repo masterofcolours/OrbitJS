@@ -2,7 +2,7 @@ import { timeLine } from "../utils/global-variables.js";
 
 
 
-function addObjectToTimLine (inputArray) {
+function addObjectToTimeLine (inputArray) {
 
     if(timeLine.backward.length !== 500 ){
 
@@ -17,5 +17,5 @@ function addObjectToTimLine (inputArray) {
     
 }
 
-export { addObjectToTimLine }
+export { addObjectToTimeLine }
 

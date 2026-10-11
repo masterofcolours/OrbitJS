@@ -1,6 +1,6 @@
 import { current_object,
     duration_time,
-    isMousDown,
+    isMouseDown,
     x_offset,
     y_offset,
     first_X,
@@ -9,7 +9,7 @@ import { current_object,
 } from "../../class-objects/object.js";
 
 document.addEventListener("mousemove", (event) => {
-    if(isMousDown.state){
+    if(isMouseDown.state){
         
         current_object.target.X = event.pageX ;
         current_object.target.Y = event.pageY ;
@@ -38,18 +38,9 @@ document.addEventListener("mouseup", (event) => {
     }
     
     clearInterval(interval);
-    isMousDown.state = false;
+    isMouseDown.state = false;
     current_object.target = null;
     x_offset.val = 0;
     y_offset.val = 0;
 
 })
-
-function movement () {
-
-    // setEventForAllObject()
-
-}
-
-
-export { movement}

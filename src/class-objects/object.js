@@ -12,7 +12,7 @@ import { pureDistance } from "../../functions/pure-distance.js";
 import { mapObjectArray } from "../../components/map/map.js";
 let current_object = {target: null};
 let duration_time = 0
-let isMousDown = {state: false};
+let isMouseDown = {state: false};
 let x_offset = {val: 0};
 let y_offset = {val: 0};
 let first_X = {val: 0};
@@ -204,22 +204,22 @@ class Particle extends HTMLElement {
                 this.shadowRoot.querySelector(".mass").classList.remove("warning");
             }
 
-            const redultRendering =  renderingOptimization(this, result, cx, cy);
+            const resultRendering =  renderingOptimization(this, result, cx, cy);
                 
-            if(redultRendering.divHide){
+            if(resultRendering.divHide){
                 this.divMass.style.display = "none";
                 
             }else{
                 this.divMass.style.display = "flex";
             }
 
-            const centerXclinet = window.scrollX + window.innerWidth /2;
-            const centerYclinet = window.scrollY + window.innerHeight /2;
+            const centerXClient = window.scrollX + window.innerWidth /2;
+            const centerYClient = window.scrollY + window.innerHeight /2;
             
-            const resultClinet = pureDistance(this.X + this.width/2, this.Y + this.width/2, centerXclinet, centerYclinet)
+            const resultClient = pureDistance(this.X + this.width/2, this.Y + this.width/2, centerXClient, centerYClient)
             
             
-            if(resultClinet > (window.innerWidth /2 + screen.height/2)/1.5){
+            if(resultClient > (window.innerWidth /2 + screen.height/2)/1.5){
                 this.orbit.style.display = "none";
             }
                 
@@ -274,7 +274,7 @@ function setEventForAllObject (root){
         if(event.target === root){
             root.orbit.style.opacity = 0.0
             current_object.target = root;
-            isMousDown.state = true;
+            isMouseDown.state = true;
             const rect = root.getBoundingClientRect()
             current_object.target.V_X = 0;
             current_object.target.V_Y = 0;
@@ -297,7 +297,7 @@ function setEventForAllObject (root){
 export { Particle, 
     current_object,
     duration_time,
-    isMousDown,
+    isMouseDown,
     x_offset,
     y_offset,
     first_X,

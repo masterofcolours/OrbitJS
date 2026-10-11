@@ -4,19 +4,19 @@ import { acceleration } from "./jsCods/acceleration.js";
 
 function distance (first , second){
 
-    let iscollision =  false;    
+    let isCollision =  false;    
     
     let result = Math.sqrt(((second.X) - (first.X))**2 + 
     ((second.Y ) - (first.Y ))**2);
     
-    let extrAacceleration = [0, 0];
+    let extraAcceleration = [0, 0];
 
     let radiusFirst = first.width/2
     let radiusSecond = second.width/2
 
     const minDistance = (radiusFirst + radiusSecond);
     
-    if(result < minDistance){
+    if(result <= minDistance){
         
         if(first.mass >= second.mass){
             collision(second.X, second.Y)
@@ -28,15 +28,15 @@ function distance (first , second){
 
             first.mass += second.mass;
 
-            extrAacceleration = acceleration(first, [fx, fy]);
+            extraAcceleration = acceleration(first, [fx, fy]);
 
-            iscollision = true;
+            isCollision = true;
                     
         }
     }
 
     
-    return  [result, extrAacceleration, iscollision];
+    return  [result, extraAcceleration, isCollision];
 }
 
 export {distance};

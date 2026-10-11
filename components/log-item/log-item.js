@@ -1,5 +1,5 @@
 "use strict";
-import { all_objects, isCamerAactive } from "../../utils/global-variables.js";
+import { all_objects, isCameraActive } from "../../utils/global-variables.js";
 
 class LogItem extends HTMLElement {
     constructor(mass, x, y, ax, ay, vx, vy, u, k, particle){
@@ -150,7 +150,7 @@ class LogItem extends HTMLElement {
         })
 
         cameraBTN.addEventListener("click", ()=>{
-            isCamerAactive.object = this.particle;
+            isCameraActive.object = this.particle;
             const cameraBTN = document.querySelector('.camera-off');
             cameraBTN.style.display = "block";
         })

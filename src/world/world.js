@@ -1,18 +1,17 @@
-import { all_objects, isCamerAactive, play } from "../../utils/global-variables.js";
+import { all_objects, isCameraActive, play } from "../../utils/global-variables.js";
 import { distance } from "./math/distance.js";
 import { createObjectTimeLine } from "../../functions/time-line-obj.js";
-import { addObjectToTimLine } from "../../functions/time-line-add.js";
+import { addObjectToTimeLine } from "../../functions/time-line-add.js";
 import { camera } from "./camera/camera.js";
 import { acceleration } from "./math/jsCods/acceleration.js";
 import { force } from "./math/jsCods/force.js";
-import { createMap } from "../../functions/create-pam.js";
+import { createMap } from "../../functions/create-map.js";
 let timeStored = 0;
 const numberOfParticles = document.querySelector('.number-of-particles');
 
-
 function world(){
 
-    const upfateMap = createMap();
+    const updateMap = createMap();
 
     function loop(time) {
 
@@ -23,7 +22,7 @@ function world(){
                 timeStored = time;
             }
 
-            upfateMap.updateMap()
+            updateMap.updateMap()
             
             if (delta_T > 0.1) delta_T = 0.016;
             
@@ -31,29 +30,29 @@ function world(){
             
             const dataArrayInTimeLine = []
             
-            for(let itemm of all_objects){
-                let result = createObjectTimeLine(itemm)
+            for(let item of all_objects){
+                let result = createObjectTimeLine(item)
                 dataArrayInTimeLine.push(result);
             }
             
-            addObjectToTimLine(dataArrayInTimeLine)
-            
-            
+            addObjectToTimeLine(dataArrayInTimeLine)
+
+
             for(let obj of all_objects){
                 
                 let total_X_acceleration = 0;
                 let total_Y_acceleration = 0;
-                
-                for(let obj_iiner of all_objects){
+
+                for(let obj_inner of all_objects){
                     
-                    if( obj_iiner !== obj ){
-                        let dist = distance(obj, obj_iiner);
+                    if( obj_inner !== obj ){
+                        let dist = distance(obj, obj_inner);
                         
                         let a;
                         
                         if(dist[2]){                        
                             a = dist[1]
-                            toRemove.add(obj_iiner);
+                            toRemove.add(obj_inner);
                         }else{
                             
                             let f = force(obj, obj_iiner, dist[0]);
@@ -66,8 +65,7 @@ function world(){
                     }
                     
                 }
-                
-                obj.totalAccelertion = [total_X_acceleration , total_Y_acceleration];
+                obj.totalAcceleration = [total_X_acceleration , total_Y_acceleration];
                 
             }
             
@@ -77,12 +75,12 @@ function world(){
             
     
             for(let item of all_objects){
-                item.update(item.totalAccelertion, delta_T)
+                item.update(item.totalAcceleration, delta_T)
             }
             
         }
 
-        camera(isCamerAactive.object)
+        camera(isCameraActive.object)
         numberOfParticles.textContent = "Objects: " + all_objects.length
         
         requestAnimationFrame(loop);

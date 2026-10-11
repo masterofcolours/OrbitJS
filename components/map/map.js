@@ -1,7 +1,7 @@
 "use strict";
 
 import { scrollCenter } from "../../functions/ScrollCenter.js";
-import { all_objects, currentSun, isCamerAactive } from "../../utils/global-variables.js";
+import { all_objects, currentSun, isCameraActive } from "../../utils/global-variables.js";
 
 const mapObjectArray = []
 
@@ -48,7 +48,7 @@ class MapItem extends HTMLElement {
 
         this.innerWindow.addEventListener("click", (event)=>{
             event.stopPropagation();
-            if(!isCamerAactive.object){
+            if(!isCameraActive.object){
                 if(event.target === this.innerWindow){
                     this.cp.style.left = (event.layerX - this.cpWidth/2) + "px";
                     this.cp.style.top = (event.layerY - this.cpHeight/2) + "px";
@@ -74,7 +74,7 @@ class MapItem extends HTMLElement {
                 return item.inMap === newDiv;
             })
 
-            isCamerAactive.object = result.real;
+            isCameraActive.object = result.real;
             const cameraBTN = document.querySelector('.camera-off');
             cameraBTN.style.display = "block";
 

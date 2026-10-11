@@ -1,8 +1,7 @@
 import { Particle } from "./src/class-objects/object.js";
 import { world } from "./src/world/world.js";
-import { about, currentSun, duration, isCamerAactive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
+import { about, currentSun, duration, isCameraActive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
 import { all_objects } from "./utils/global-variables.js";
-import { movement } from "./src/world/god-hands/movement.js";
 import { Log } from "./components/log/log.js";
 import { LogItem } from "./components/log-item/log-item.js";
 import { TimeLine } from "./components/time-line/time-line.js";
@@ -20,7 +19,6 @@ import { scrollCenter } from "./functions/ScrollCenter.js";
 import { AboutME } from "./components/about-me/about-me.js";
 world();
 leftClickOnWorld();
-movement()
 window.customElements.define("space-object", Particle);
 window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);
@@ -79,7 +77,7 @@ removeBTN.addEventListener("click", ()=>{
 })
 
 cameraBTN.addEventListener('click', ()=>{
-    isCamerAactive.object = null;
+    isCameraActive.object = null;
     cameraBTN.style.display = "none";
 })
 
