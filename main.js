@@ -16,9 +16,12 @@ import { leftClickOnWorld } from "./src/world/god-hands/movement-in-world.js";
 import { SelectWorld } from "./components/select-world-panel/select-world.js";
 import { WorldItem } from "./components/world-item/world-item.js"; 
 import { scrollCenter } from "./functions/ScrollCenter.js";
+
 import { AboutME } from "./components/about-me/about-me.js";
+import  listeners  from "./src/world/god-hands/movement.js";
 world();
 leftClickOnWorld();
+listeners()
 window.customElements.define("space-object", Particle);
 window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);

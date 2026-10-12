@@ -271,7 +271,7 @@ function setEventForAllObject (root){
     }
 
     root.addEventListener("mousedown", (event)=>{
-        if(event.target === root){
+        if(event.target === root){            
             root.orbit.style.opacity = 0.0
             current_object.target = root;
             isMouseDown.state = true;

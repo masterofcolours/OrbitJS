@@ -8,39 +8,45 @@ import { current_object,
     interval, 
 } from "../../class-objects/object.js";
 
-document.addEventListener("mousemove", (event) => {
-    if(isMouseDown.state){
-        
-        current_object.target.X = event.pageX ;
-        current_object.target.Y = event.pageY ;
-        current_object.target.V_X = 0;
-        current_object.target.V_Y = 0;
-                
-        current_object.target.style.transform = `translate(${ event.pageX - x_offset.val }px, ${ event.pageY - y_offset.val }px)`;
-        
-    }
-})
-
-document.addEventListener("mouseup", (event) => {
-
-    if(!current_object.target){return;}
-
-    current_object.target.orbit.style.opacity = 1;
+function listeners() {
+    document.addEventListener("mousemove", (event) => {
+        if(isMouseDown.state){
+            
+            current_object.target.X = event.pageX ;
+            current_object.target.Y = event.pageY ;
+            current_object.target.V_X = 0;
+            current_object.target.V_Y = 0;
+                    
+            current_object.target.style.transform = `translate(${ event.pageX - x_offset.val }px, ${ event.pageY - y_offset.val }px)`;
+            
+        }
+    })
     
-    let time = Date.now()
-
-    let dt = Math.floor((time - duration_time) / 1000) + 10
-
-    if(dt > 0){
-        
-        current_object.target.V_X = (current_object.target.X - first_X.val) / dt * 10;
-        current_object.target.V_Y = (current_object.target.Y - first_Y.val) / dt * 10;
-    }
+    document.addEventListener("mouseup", () => {
+            
+        if(!current_object.target){return;}    
     
-    clearInterval(interval);
-    isMouseDown.state = false;
-    current_object.target = null;
-    x_offset.val = 0;
-    y_offset.val = 0;
+        current_object.target.orbit.style.opacity = 1;
+        
+        let time = Date.now()
+    
+        let dt = Math.floor((time - duration_time) / 1000) + 10
+    
+        if(dt > 0){
+            
+            current_object.target.V_X = (current_object.target.X - first_X.val) / dt * 10;
+            current_object.target.V_Y = (current_object.target.Y - first_Y.val) / dt * 10;
+        }
+        
+        clearInterval(interval);
+        isMouseDown.state = false;
+        current_object.target = null;
+        x_offset.val = 0;
+        y_offset.val = 0;
+    
+    })
+    
+}
 
-})
+export default listeners 
+
