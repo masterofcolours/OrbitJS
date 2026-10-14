@@ -1,6 +1,6 @@
 import { Particle } from "./src/class-objects/object.js";
 import { world } from "./src/world/world.js";
-import { about, isCameraActive, play, timeLine } from "./utils/global-variables.js";
+import { about, isCameraActive, mainSettings, play, timeLine } from "./utils/global-variables.js";
 import { Log } from "./components/log/log.js";
 import { LogItem } from "./components/log-item/log-item.js";
 import { TimeLine } from "./components/time-line/time-line.js";
@@ -17,7 +17,7 @@ import { WorldItem } from "./components/world-item/world-item.js";
 import { AboutME } from "./components/about-me/about-me.js";
 import  listeners  from "./src/world/god-hands/movement.js";
 import { loadFunctios } from "./functions/LoadFunction.js";
-
+import { settingMian } from "./components/globall-settings/settings.js";
 world();
 leftClickOnWorld();
 listeners();
@@ -32,6 +32,7 @@ window.customElements.define("arrow-keys", ArrowKeys);
 window.customElements.define("select-world", SelectWorld);
 window.customElements.define("world-item", WorldItem);
 window.customElements.define("about-me", AboutME);
+window.customElements.define("setting-component", settingMian);
 
 const startBTN = document.querySelector('.start-button');
 const playBTN = document.querySelector('.play');
@@ -39,6 +40,7 @@ const pauseBTN = document.querySelector('.pause');
 const removeBTN = document.querySelector('.remove');
 const cameraBTN = document.querySelector('.camera-off');
 const gitBTN = document.querySelector('.git');
+const setting = document.querySelector('.setting');
 
 
 backward();
@@ -82,7 +84,12 @@ gitBTN.addEventListener('click', ()=>{
     }
 })
 
-
+setting.addEventListener("click", ()=>{    
+    if(!mainSettings.isON){
+        const newMainSetting = new settingMian();
+        document.body.append(newMainSetting);
+    }
+})
 
 
 

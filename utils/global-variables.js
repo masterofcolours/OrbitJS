@@ -14,4 +14,5 @@ const currentSun = {value: null};
 const selectPanelIsActive = {value: false}
 const selectsBTN = [];
 const about = {aboutIsOn: false}
-export { all_objects, about, G, selectsBTN, softening, logBox, play , duration, timeLine, CDC, isCameraActive, timerIsOn, zoomRange, currentWorld, currentSun, selectPanelIsActive};
+const mainSettings = {isON: false}
+export { all_objects, about, G, mainSettings, selectsBTN, softening, logBox, play , duration, timeLine, CDC, isCameraActive, timerIsOn, zoomRange, currentWorld, currentSun, selectPanelIsActive};
