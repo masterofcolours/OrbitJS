@@ -70,9 +70,7 @@ class AlertBox extends HTMLElement {
         
     }
 
-    disconnectedCallback() { 
-
-    }
+    
 
 }
 

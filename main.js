@@ -1,7 +1,6 @@
 import { Particle } from "./src/class-objects/object.js";
 import { world } from "./src/world/world.js";
-import { about, currentSun, duration, isCameraActive, play, selectPanelIsActive, timeLine, timerIsOn } from "./utils/global-variables.js";
-import { all_objects } from "./utils/global-variables.js";
+import { about, isCameraActive, play, timeLine } from "./utils/global-variables.js";
 import { Log } from "./components/log/log.js";
 import { LogItem } from "./components/log-item/log-item.js";
 import { TimeLine } from "./components/time-line/time-line.js";
@@ -15,13 +14,13 @@ import { ArrowKeys } from "./components/arrow-keys/arrow-keys.js";
 import { leftClickOnWorld } from "./src/world/god-hands/movement-in-world.js";
 import { SelectWorld } from "./components/select-world-panel/select-world.js";
 import { WorldItem } from "./components/world-item/world-item.js"; 
-import { scrollCenter } from "./functions/ScrollCenter.js";
-
 import { AboutME } from "./components/about-me/about-me.js";
 import  listeners  from "./src/world/god-hands/movement.js";
+import { loadFunctios } from "./functions/LoadFunction.js";
+
 world();
 leftClickOnWorld();
-listeners()
+listeners();
 window.customElements.define("space-object", Particle);
 window.customElements.define("log-object", Log);
 window.customElements.define("log-item", LogItem);
@@ -42,23 +41,15 @@ const cameraBTN = document.querySelector('.camera-off');
 const gitBTN = document.querySelector('.git');
 
 
-backward()
-forwardTimeLine()
+backward();
+forwardTimeLine();
 
+window.addEventListener("load", ()=>{
+    loadFunctios();
+})
 
 startBTN.addEventListener('click', ()=>{
-    if(!selectPanelIsActive.value){
-        document.querySelector(".current-world").textContent = "Empty";
-        removeAllParticles()
-        const newPanel = new SelectWorld();
-        document.body.append(newPanel);
-        selectPanelIsActive.value = true;
-    }else{
-        const middleX = (document.documentElement.scrollWidth - window.innerWidth) / 2;
-        const middleY = (document.documentElement.scrollHeight - window.innerHeight) / 2;
-        scrollCenter(middleX, middleY);
-    }
-
+    loadFunctios();
 })
 
 playBTN.addEventListener("click", ()=>{
@@ -75,8 +66,7 @@ pauseBTN.addEventListener("click", ()=>{
 })
 
 removeBTN.addEventListener("click", ()=>{
-    removeAllParticles()
-    
+    removeAllParticles();
 })
 
 cameraBTN.addEventListener('click', ()=>{
@@ -90,23 +80,9 @@ gitBTN.addEventListener('click', ()=>{
         document.body.append(newAboutCart);
         about.aboutIsOn = true;
     }
-
 })
 
 
-// zoomUp.addEventListener("click", ()=>{
-//     if(zoomRange.value <= 5){
-//         zoomRange.value -= 0.1;
-//         zoom("zoom-up");
-//     }
-// })
-
-// zoomIn.addEventListener("click", ()=>{
-//     if(zoomRange.value >= 0){
-//         zoomRange.value += 0.1;
-//         zoom("zoom-in");
-//     }
-// })
 
 
 

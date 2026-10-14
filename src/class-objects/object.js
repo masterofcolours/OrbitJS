@@ -216,19 +216,15 @@ class Particle extends HTMLElement {
             const centerXClient = window.scrollX + window.innerWidth /2;
             const centerYClient = window.scrollY + window.innerHeight /2;
             
-            const resultClient = pureDistance(this.X + this.width/2, this.Y + this.width/2, centerXClient, centerYClient)
-            
-            
-            if(resultClient > (window.innerWidth /2 + screen.height/2)/1.5){
+            if(Math.abs(centerXClient - (this.X + this.width/2)) > window.innerWidth/2 || 
+                Math.abs(centerYClient - (this.Y + this.width/2)) > window.innerHeight/2
+            ){
                 this.orbit.style.display = "none";
-            }
-                
-            else{
+            }else{
                 this.orbit.style.display = "block";
             }
-
-            return;
             
+            return;
         }
 
         this.shadowRoot.querySelector(".mass").classList.remove("warning");
