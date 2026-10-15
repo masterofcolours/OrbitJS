@@ -7,7 +7,7 @@ function potential_energy(input){
     for(let object of all_objects){
         if(input !== object){  
             let distanceREsult = distance(input, object)       
-            U += (-G* input.mass * object.mass) / distanceREsult[0];
+            U += (-G.value * input.mass * object.mass) / distanceREsult[0];
             
         }
     }

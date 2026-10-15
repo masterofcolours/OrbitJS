@@ -2,7 +2,7 @@ import { G } from "../../../utils/global-variables.js";
 const SCALE = 1;
 function orbit (planet, central){
 
-    const μ = G * central.mass;
+    const μ = G.value * central.mass;
 
     const rx = planet.X - central.X;
     const ry = planet.Y - central.Y;

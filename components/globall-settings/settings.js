@@ -1,4 +1,4 @@
-import { mainSettings } from "../../utils/global-variables.js";
+import { G, mainSettings, softening } from "../../utils/global-variables.js";
 
 class settingMian extends HTMLElement{
     constructor(){
@@ -12,6 +12,18 @@ class settingMian extends HTMLElement{
 
             <div class="main">
                 <div class="inner">
+                    <p class="header" >General Settings</p>
+
+                    <div class="item">
+                        <p>G =</p>
+                        <input class="g" type="number" min="1" max="10">
+                    </div>
+                    <div class="item">
+                        <p>S =</p>
+                        <input class="s" type="number" min="1" max="10">
+                    </div>
+
+                    <div class="btn"><button>Update</button></div>
 
 
                 <div class="close">
@@ -39,6 +51,34 @@ class settingMian extends HTMLElement{
                 this.remove()
             }
         })
+
+        const s = this.shadowRoot.querySelector(".s");
+        s.addEventListener("change", (event)=>{
+            softening.value = event.target.value;
+        })
+
+        const g = this.shadowRoot.querySelector(".g");
+        g.addEventListener("change", (event)=>{
+            G.value = event.target.value;
+        })
+        
+        const btn = this.shadowRoot.querySelector("button");
+        btn.addEventListener("click", ()=>{
+
+            if(g.value <= 0){
+                G.value = 1;
+            }else{
+                G.value = g.value;
+            }
+
+            if(s.value <= 0){
+                softening.value = 2;
+            }else{
+                softening.value = s.value; 
+            }
+
+        })
+
     }
     
     disconnectedCallback(){

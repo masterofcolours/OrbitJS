@@ -18,6 +18,10 @@
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.378);
 }
 
+.window:hover .object:not(.sun){
+    transform: scale(2);
+}
+
 .inner-window{
     position: relative;
     width: 100%;

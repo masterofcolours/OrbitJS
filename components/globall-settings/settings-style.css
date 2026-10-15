@@ -5,9 +5,9 @@
 }
 
 .main{
-    width: 400px;
+    width: 300px;
     height: auto;
-    min-height: 150px;
+    min-height: 100px;
     padding: 10px;
     border: 1px solid white;
     position: fixed;
@@ -27,4 +27,49 @@
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.item{
+    width: 100%;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.item p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item input{
+    width: 50%;
+    border: none;
+    background-color: rgb(54, 54, 54);
+    padding: 5px 0;
+    color: white;
+}
+
+.header{
+    color: white;
+    font-weight: bold;
+}
+
+.btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+button{
+    background-color: white;
+    border: none;
+    padding: 8px 30px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
 }
